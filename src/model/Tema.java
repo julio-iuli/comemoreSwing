@@ -10,6 +10,19 @@ class Tema extends Categoria{
     //Associação com outra tabela
     protected Categoria categoria;
 
+    public Tema(){
+    }    
+    public Tema(int id,String nome descricao status dataCompra imgTema,char genero,double preco,){
+        this.id = id;
+        this.nome = nome;
+        this.descricao = descricao;
+        this.status = status;
+        this.dataCompra = dataCompra;
+        this.imgTema = imgTema;
+        this.genero = genero;
+        this.preco = preco;
+    }
+    
     //gets e sets
     
     public void setId(int id){
