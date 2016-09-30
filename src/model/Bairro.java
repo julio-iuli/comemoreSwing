@@ -10,6 +10,7 @@ public class Bairro {
 
 	public int getId() {
 		return id;
+		//teste
 	}
 
 	public void setId(int id) {
