@@ -30,8 +30,8 @@ package model;
         }
         
         //Printa-dor
-        public String toString(printarcategoria){
-            return printarcategoria+"Id da Categoria: "+this.id+
+        public String toString(){
+            return "Id da Categoria: "+this.id+
                                     "Categoria do Tema: "+this.nome;    
         }
         
