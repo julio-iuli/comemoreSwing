@@ -37,12 +37,7 @@ esquecemos,porque o preço de item é do item e não do tema.
             return preco;
         }
         
-        //Printa-dor
-        public String toString(){
-            return "Id do Item: "+this.id+
-                                "Nome do item: "+this.nome+
-                                "Preço do Item: "+this.preco;
-        }
+        
         
         
         

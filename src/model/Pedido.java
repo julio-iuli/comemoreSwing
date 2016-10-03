@@ -12,7 +12,7 @@ public class Pedido {
 	private Logradouro logradouro;
 	private Cliente cliente;
 	private Funcionario funcionario;
-	private Tema tema;
+	
 	
 	public Pedido() {
 		super();
