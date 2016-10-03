@@ -8,6 +8,9 @@ esquecemos,porque o preço de item é do item e não do tema.
         private int id;
         private String nome;
         private double preco;
+        //Assoc
+        
+        protected Tema tema;
         
         //construtores
         public Item(){

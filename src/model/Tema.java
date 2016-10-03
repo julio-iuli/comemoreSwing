@@ -7,6 +7,10 @@ class Tema{
     private char genero;
     private double preco;
     
+    //Associacao
+    protected Item item;
+    protected Categoria categoria;
+    
     public Tema(){
     }    
     public Tema (	int id, 
@@ -71,5 +75,19 @@ class Tema{
     public String getImgTema(){
         return this.imgTema;
     }
+	public String getDescricao() {
+		return descricao;
+	}
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+	public String getDataCompra() {
+		return dataCompra;
+	}
+	public void setDataCompra(String dataCompra) {
+		this.dataCompra = dataCompra;
+	}
+    
+    
     
 }
