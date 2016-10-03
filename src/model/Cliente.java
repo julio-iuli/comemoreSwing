@@ -13,9 +13,6 @@ public class Cliente{
 	private int celtel;
 	private int rg;
 	private String rgEmissor;
-	private int cpf;
-	private int cnpj;
-	private byte pfpj;
 	private String email;
 	private Date dataNasc;
 	private String complemento;
@@ -31,7 +28,7 @@ public class Cliente{
 
 
 	public Cliente(int id, String nome, byte resddd, int restel, byte celddd, int celtel, int rg, String rgEmissor,
-			int cpf, int cnpj, byte pfpj, String email, Date dataNasc, String complemento, Logradouro logradouro,
+			 String email, Date dataNasc, String complemento, Logradouro logradouro,
 			String recomendacaoNome, Date recomendacaoDataNasc) {
 		super();
 		this.id = id;
@@ -42,9 +39,6 @@ public class Cliente{
 		this.celtel = celtel;
 		this.rg = rg;
 		this.rgEmissor = rgEmissor;
-		this.cpf = cpf;
-		this.cnpj = cnpj;
-		this.pfpj = pfpj;
 		this.email = email;
 		this.dataNasc = dataNasc;
 		this.complemento = complemento;
@@ -134,36 +128,7 @@ public class Cliente{
 	}
 
 
-	public int getCpf() {
-		return cpf;
-	}
-
-
-	public void setCpf(int cpf) {
-		this.cpf = cpf;
-	}
-
-
-	public int getCnpj() {
-		return cnpj;
-	}
-
-
-	public void setCnpj(int cnpj) {
-		this.cnpj = cnpj;
-	}
-
-
-	public byte getPfpj() {
-		return pfpj;
-	}
-
-
-	public void setPfpj(byte pfpj) {
-		this.pfpj = pfpj;
-	}
-
-
+	
 	public String getEmail() {
 		return email;
 	}
