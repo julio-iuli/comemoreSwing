@@ -8,11 +8,14 @@ esquecemos,porque o preço de item é do item e não do tema.
         private int id;
         private String nome;
         private double preco;
+        //Assoc
+        
+        protected Tema tema;
         
         //construtores
-        public Tema(){
+        public Item(){
         }
-        public Tema(int id,String nome,double preco){
+        public Item(int id,String nome, double preco){
             this.id = id;
             this.nome = nome;
             this.preco = preco;
@@ -33,16 +36,11 @@ esquecemos,porque o preço de item é do item e não do tema.
         public void setPreco(double preco){
             this.preco = preco;
         }
-        public String getPreco(){
+        public double getPreco(){
             return preco;
         }
         
-        //Printa-dor
-        public String toString(printaritem){
-            return printaritem+"Id do Item: "+this.item+
-                                "Nome do item: "+this.nome+
-                                "Preço do Item: "+this.preco;
-        }
+        
         
         
         

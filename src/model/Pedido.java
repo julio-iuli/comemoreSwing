@@ -12,7 +12,7 @@ public class Pedido {
 	private Logradouro logradouro;
 	private Cliente cliente;
 	private Funcionario funcionario;
-	private Tema tema;
+	
 	
 	public Pedido() {
 		super();
@@ -20,7 +20,7 @@ public class Pedido {
 	}
 
 	public Pedido(int id, Date dataPedido, Date dataEntrega, String obsPedido, String complemento,
-			Logradouro logradouro, Cliente cliente, Funcionario funcionario, Tema tema) {
+			Logradouro logradouro, Cliente cliente, Funcionario funcionario) {
 		super();
 		this.id = id;
 		this.dataPedido = dataPedido;
@@ -30,7 +30,7 @@ public class Pedido {
 		this.logradouro = logradouro;
 		this.cliente = cliente;
 		this.funcionario = funcionario;
-		this.tema = tema;
+		
 	}
 
 	public int getId() {
@@ -96,22 +96,5 @@ public class Pedido {
 	public void setFuncionario(Funcionario funcionario) {
 		this.funcionario = funcionario;
 	}
-
-	public Tema getTema() {
-		return tema;
-	}
-
-	public void setTema(Tema tema) {
-		this.tema = tema;
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 }
