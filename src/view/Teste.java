@@ -2,6 +2,8 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -17,6 +19,11 @@ public class Teste extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	
+	public void mostrarEndereco() {
+		contentPane.add(new Endereco(), BorderLayout.CENTER);
+	}
+	
 	public Teste() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 700, 500);
@@ -24,7 +31,7 @@ public class Teste extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-		
+					
 		JMenuBar menuBar = new JMenuBar();
 		contentPane.add(menuBar, BorderLayout.NORTH);
 		
@@ -90,6 +97,23 @@ public class Teste extends JFrame {
 		
 		JMenuItem mntmCategoria = new JMenuItem("Categoria");
 		mnTema.add(mntmCategoria);
+		
+		JMenu mnEndereco = new JMenu("Endereço");
+		menuBar.add(mnEndereco);
+		
+		JMenuItem mntmMostrarEndereco = new JMenuItem("Mostrar Endereço");
+		mnEndereco.add(mntmMostrarEndereco);
+
+		mntmMostrarEndereco.addActionListener(new ActionListener(){
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					mostrarEndereco();
+					setContentPane(contentPane);
+				}
+				
+			});
 	}
 
 }
+// voo 3327 TAM
