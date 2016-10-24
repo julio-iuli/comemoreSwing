@@ -19,10 +19,7 @@ public class Teste extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	
-	public void mostrarEndereco() {
-		contentPane.add(new Endereco(), BorderLayout.CENTER);
-	}
+
 	
 	public Teste() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -108,11 +105,21 @@ public class Teste extends JFrame {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					// TODO Auto-generated method stub
-					mostrarEndereco();
+					contentPane.add(new Endereco(), BorderLayout.CENTER);
 					setContentPane(contentPane);
 				}
 				
 			});
+		
+		mntmCategoria.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				contentPane.add(new JanelaCategoria(), BorderLayout.CENTER);
+				setContentPane(contentPane);
+			}
+			
+		});
 	}
 
 }
