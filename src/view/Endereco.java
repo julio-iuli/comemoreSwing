@@ -50,6 +50,7 @@ public class Endereco extends JPanel {
 		txtCEP.setColumns(10);
 		
 		JButton btnBuscarCep = new JButton("Buscar CEP");
+		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
