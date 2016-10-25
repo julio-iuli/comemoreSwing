@@ -5,7 +5,7 @@ package view;
 
 import javax.swing.*;
 
-public class JanelaCategoria extends JFrame {
+public class JanelaCategoria extends JPanel {
 
 	
 	private JButton criar, editar, excluir;
@@ -20,9 +20,9 @@ public class JanelaCategoria extends JFrame {
 
 	public JanelaCategoria() {
 		
-		super("Categoria");
+		//super("Categoria");
 		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 700, 500);
 		
 		setLayout(null);
