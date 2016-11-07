@@ -1,11 +1,14 @@
 package view;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 //Galera, tamb�m somente exercitando
 
 //teste
 import javax.swing.*;
 
-public class JanelaCargo extends JFrame {
+public class JanelaCargo extends JPanel implements ActionListener {
 
 	
 	private JButton criar, editar, excluir;
@@ -16,13 +19,8 @@ public class JanelaCargo extends JFrame {
 			"Cargo 3", "Cargo 4", "Cargo 5", "Cargo 6",
 			"Cargo 7", "Cargo 8", "Cargo 9"};
 
-	
-
 	public JanelaCargo() {
 		
-		super("Cargo");
-		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 700, 500);
 		
 		setLayout(null);
@@ -36,11 +34,9 @@ public class JanelaCargo extends JFrame {
 		carSalario = new JLabel("Sal�rio");
 		carSalario.setBounds(20, 345, 200, 20);
 		
-		
-		
-		
 		criar = new JButton("Criar");
 		criar.setBounds(20, 400, 90, 30);
+		criar.addActionListener(this);
 		
 		editar = new JButton("Editar");
 		editar.setBounds(120, 400, 90, 30);
@@ -57,10 +53,6 @@ public class JanelaCargo extends JFrame {
 		campoSalario = new JTextField();
 		campoSalario.setBounds(20, 365, 200, 20);
 		
-		
-		
-		
-		
 		add(criar);
 		add(editar);
 		add(excluir);
@@ -71,26 +63,16 @@ public class JanelaCargo extends JFrame {
 		add(carSalario);
 		add(carNome);
 		
-		
-		
-		
 		setVisible(true);
 		
 	}
 
-	
-	public static void main(String[] args) {
-		
-		JanelaCargo janCar = new JanelaCargo();
-		
-		//Agora teria que colocar esse objeto janCat dentro da tela do J�lio
-		// ou melhor, teria que chamar essa tela e inserir meu objeto dentro
-		// N�o sei como ainda
-		
-		
-		
-		
-		
+	@Override
+	public void actionPerformed(ActionEvent e) {
+
+		if (e.getSource() == criar){
+			JOptionPane.showMessageDialog(null, "funciona! clicado em criar");
+		}
 	}
 
 }
