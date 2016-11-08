@@ -1,20 +1,25 @@
 package view;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.SQLException;
+
 //Galera, tamb�m somente exercitando
 
 
 import javax.swing.*;
 
-public class JanelaCategoria extends JPanel {
+import model.Categoria;
+
+public class JanelaCategoria extends JPanel implements ActionListener{
 
 	
 	private JButton criar, editar, excluir;
-	private JLabel catExistentes;
+	private JLabel catExistentes, catNome;
 	private JList lista;
 	private JTextField campoNome;
 	private String[] categorias = {"Categoria 1", "Categoria 2", 
-			"Categoria 3", "Categoria 4", "Categoria 5", "Categoria 6",
-			"Categoria 7", "Categoria 8", "Categoria 9"};
+			"Categoria 3"};
 
 	
 
@@ -29,15 +34,19 @@ public class JanelaCategoria extends JPanel {
 		
 		catExistentes = new JLabel("Categorias Existentes");
 		catExistentes.setBounds(20, 20, 130, 20);
+		
+		catNome = new JLabel("Nome");
+		catNome.setBounds(20, 320, 130, 20);
 				
 		criar = new JButton("Criar");
-		criar.setBounds(20, 400, 90, 30);
+		criar.setBounds(20, 390, 90, 30);
+		criar.addActionListener(this);
 		
 		editar = new JButton("Editar");
-		editar.setBounds(120, 400, 90, 30);
+		editar.setBounds(120, 390, 90, 30);
 		
 		excluir = new JButton("Excluir");
-		excluir.setBounds(220, 400, 90, 30);
+		excluir.setBounds(220, 390, 90, 30);
 
 		lista = new JList(categorias);
 		lista.setBounds(20, 50, 150, 250);
@@ -49,11 +58,12 @@ public class JanelaCategoria extends JPanel {
 		
 		
 		add(criar);
-		add(editar);
-		add(excluir);
+		//add(editar); Comentado at� habilitar esta funcionalidade
+		//add(excluir); Comentado at� habilitar esta funcionalidade
 		add(catExistentes);
 		add(lista);
 		add(campoNome);
+		add(catNome);
 		
 		
 		
@@ -62,6 +72,37 @@ public class JanelaCategoria extends JPanel {
 		
 	}
 
+	
+	@Override
+	public void actionPerformed(ActionEvent ap) {
+
+		if (ap.getSource() == criar){
+			//JOptionPane.showMessageDialog(null, "funciona! clicado em criar: ");
+			Categoria categoria = new Categoria();
+			categoria.setNome(campoNome.getText());
+			
+						
+			try {
+				CategoriaDAO dao = new CategoriaDAO();
+				
+				dao.inserir(categoria);
+				
+				JOptionPane.showMessageDialog(null, "Gravado");
+				
+			} catch (SQLException erro) {
+				// TODO Auto-generated catch block
+				JOptionPane.showMessageDialog(null, erro);
+			}
+			
+			
+			
+			
+		}
+	}
+	
+	
+	
+	/*
 	
 	public static void main(String[] args) {
 		
@@ -76,6 +117,9 @@ public class JanelaCategoria extends JPanel {
 		
 		
 	}
+
+*/
+
 
 }
 
