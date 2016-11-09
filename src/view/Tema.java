@@ -1,154 +1,192 @@
 package view;
 
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JLabel;
-import javax.swing.JInternalFrame;
+import javax.swing.border.EmptyBorder;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextArea;
-import javax.swing.JCheckBox;
 import javax.swing.JRadioButton;
+import javax.swing.JCheckBox;
 import javax.swing.JButton;
-import javax.swing.JToggleButton;
 
-public class Tema extends JPanel {
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
+public class Tema extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField txtNomeTema;
+	private JTextField txtDataCompra;
+	private JTextField txtPreco;
 
 	/**
-	 * Create the panel.
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Tema frame = new Tema();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
 	 */
 	public Tema() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 565, 350);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
 		
 		JLabel lblNomeDoTema = new JLabel("Nome do Tema");
 		
-		textField = new JTextField();
-		textField.setColumns(10);
+		txtNomeTema = new JTextField();
+		txtNomeTema.setColumns(10);
 		
-		JLabel lblDescrioDoTema = new JLabel("Descri\u00E7\u00E3o do Tema");
+		JLabel lblDescricaodoTema = new JLabel("Descri\u00E7\u00E3o do Tema");
 		
 		JTextArea textArea = new JTextArea();
 		
 		JLabel lblStatus = new JLabel("Status");
 		
-		JCheckBox chckbxAtivo = new JCheckBox("Ativo");
+		JRadioButton rbtnAtivo = new JRadioButton("Ativo");
 		
-		JCheckBox chckbxInativo = new JCheckBox("Inativo");
+		JRadioButton rbtnInativo = new JRadioButton("Inativo");
 		
 		JLabel lblGnero = new JLabel("G\u00EAnero");
 		
-		JRadioButton rdbtnMasculino = new JRadioButton("Masculino");
+		JCheckBox checkMasculino = new JCheckBox("Masculino");
 		
-		JRadioButton rdbtnFeminino = new JRadioButton("Feminino");
+		JCheckBox checkFeminino = new JCheckBox("Feminino");
 		
 		JLabel lblDataDaCompra = new JLabel("Data da Compra");
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
+		txtDataCompra = new JTextField();
+		txtDataCompra.setColumns(10);
 		
 		JLabel lblPreo = new JLabel("Pre\u00E7o");
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
+		txtPreco = new JTextField();
+		txtPreco.setColumns(10);
 		
-		JLabel lblImagenDoTema = new JLabel("Imagen do Tema");
+		JButton btnCarregarImagen = new JButton("Carregar Imagen");
 		
-		JInternalFrame internalFrame = new JInternalFrame("Imagen do Tema");
-		internalFrame.setVisible(true);
-		
-		JButton btnGravar = new JButton("Gravar");
+		JButton btnSalvar = new JButton("Salvar");
 		
 		JButton btnCancelar = new JButton("Cancelar");
 		
+		JButton btnApagar = new JButton("Apagar");
+		
+		JButton btnProcurarTema = new JButton("Procurar Tema");
+		
 		JButton btnProcurarImagen = new JButton("Procurar Imagen");
-		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
+		GroupLayout gl_contentPane = new GroupLayout(contentPane);
+		gl_contentPane.setHorizontalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(textArea, GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(lblNomeDoTema)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(textField, GroupLayout.DEFAULT_SIZE, 613, Short.MAX_VALUE))
-						.addComponent(lblDescrioDoTema)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(lblStatus)
-									.addGap(114)
-									.addComponent(lblGnero))
-								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(chckbxAtivo)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(chckbxInativo)
-									.addGap(18)
-									.addComponent(rdbtnMasculino)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(rdbtnFeminino)))
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addGap(30)
-									.addComponent(lblDataDaCompra, GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
-									.addGap(18)
-									.addComponent(lblPreo)
-									.addGap(218))
-								.addGroup(groupLayout.createSequentialGroup()
-									.addGap(18)
-									.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE)
-									.addGap(31)
-									.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
-						.addComponent(lblImagenDoTema)
-						.addComponent(internalFrame, GroupLayout.PREFERRED_SIZE, 367, GroupLayout.PREFERRED_SIZE)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(btnGravar)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(btnCancelar))
-						.addComponent(btnProcurarImagen))
-					.addContainerGap())
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblDescricaodoTema)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addGap(10)
+									.addComponent(lblStatus))
+								.addComponent(rbtnAtivo)
+								.addComponent(rbtnInativo))
+							.addGap(55)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+										.addComponent(lblGnero)
+										.addComponent(checkMasculino))
+									.addGap(19)
+									.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+										.addComponent(lblDataDaCompra)
+										.addComponent(lblPreo))
+									.addPreferredGap(ComponentPlacement.UNRELATED)
+									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+										.addComponent(txtDataCompra, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+										.addComponent(txtPreco, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+								.addComponent(checkFeminino)))
+						.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
+							.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
+								.addComponent(btnSalvar)
+								.addPreferredGap(ComponentPlacement.UNRELATED)
+								.addComponent(btnCancelar)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(btnApagar)
+								.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(btnProcurarImagen))
+							.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
+								.addComponent(btnCarregarImagen)
+								.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(btnProcurarTema))
+							.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
+								.addComponent(lblNomeDoTema)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(txtNomeTema))
+							.addComponent(textArea, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 525, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap(23, Short.MAX_VALUE))
 		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
+		gl_contentPane.setVerticalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblNomeDoTema, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblNomeDoTema)
+						.addComponent(txtNomeTema, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
+					.addComponent(lblDescricaodoTema)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(lblDescrioDoTema)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(textArea, GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE)
+					.addComponent(textArea, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
 					.addGap(11)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblStatus)
 						.addComponent(lblGnero)
 						.addComponent(lblDataDaCompra)
-						.addComponent(lblPreo))
+						.addComponent(txtDataCompra, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(chckbxAtivo)
-						.addComponent(chckbxInativo)
-						.addComponent(rdbtnMasculino)
-						.addComponent(rdbtnFeminino)
-						.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
-					.addComponent(lblImagenDoTema)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(internalFrame, GroupLayout.PREFERRED_SIZE, 160, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
-					.addComponent(btnProcurarImagen)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnGravar)
-						.addComponent(btnCancelar))
-					.addContainerGap())
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+								.addComponent(rbtnAtivo)
+								.addComponent(checkMasculino))
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+								.addComponent(rbtnInativo)
+								.addComponent(checkFeminino)))
+						.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+							.addComponent(txtPreco, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(lblPreo)))
+					.addGap(13)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnCarregarImagen)
+						.addComponent(btnProcurarTema))
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addPreferredGap(ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+								.addComponent(btnSalvar)
+								.addComponent(btnCancelar)
+								.addComponent(btnApagar))
+							.addContainerGap())
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(btnProcurarImagen)
+							.addContainerGap())))
 		);
-		setLayout(groupLayout);
-
+		contentPane.setLayout(gl_contentPane);
 	}
 }
