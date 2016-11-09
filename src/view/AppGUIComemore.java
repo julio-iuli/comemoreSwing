@@ -65,6 +65,7 @@ public class AppGUIComemore extends JFrame implements ActionListener {
 		mnTema.add(mniTemaConsulta);
 		mnTema.add(mniCategoria);
 		
+		mniTemaNovo.addActionListener(this);
 		mniCategoria.addActionListener(this);
 		
 		//Pedido
@@ -83,18 +84,24 @@ public class AppGUIComemore extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		if(e.getSource() == mniCargo){
+		if(e.getSource() == mniCargo) {
 			contentPane.remove(centro);
 			centro = new JanelaCargo();
 			contentPane.add(centro, BorderLayout.CENTER);
 			contentPane.revalidate();
 		}
-		else if (e.getSource() == mniCategoria){
+		else if (e.getSource() == mniCategoria) {
 			contentPane.remove(centro);
 			centro = new JanelaCategoria();
 			contentPane.add(centro, BorderLayout.CENTER);
 			contentPane.revalidate();	
 			
+		}
+		else if (e.getSource() == mniTemaNovo) {
+			contentPane.remove(centro);
+			centro = new JanelaTema();
+			contentPane.add(centro, BorderLayout.CENTER);
+			contentPane.revalidate();
 		}
 		
 	}
