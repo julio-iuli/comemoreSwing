@@ -16,7 +16,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JCheckBox;
 import javax.swing.JButton;
 
-public class Tema extends JFrame {
+public class JanelaTema extends JPanel {
 
 	private JPanel contentPane;
 	private JTextField txtNomeTema;
@@ -24,30 +24,14 @@ public class Tema extends JFrame {
 	private JTextField txtPreco;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Tema frame = new Tema();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the frame.
 	 */
-	public Tema() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	public JanelaTema() {
+		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 565, 350);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
+		//contentPane = new JPanel();
+		setBorder(new EmptyBorder(5, 5, 5, 5));
+		//setContentPane(contentPane);
 		
 		JLabel lblNomeDoTema = new JLabel("Nome do Tema");
 		
@@ -91,7 +75,8 @@ public class Tema extends JFrame {
 		JButton btnProcurarTema = new JButton("Procurar Tema");
 		
 		JButton btnProcurarImagen = new JButton("Procurar Imagen");
-		GroupLayout gl_contentPane = new GroupLayout(contentPane);
+		
+		GroupLayout gl_contentPane = new GroupLayout(this);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
@@ -187,6 +172,6 @@ public class Tema extends JFrame {
 							.addComponent(btnProcurarImagen)
 							.addContainerGap())))
 		);
-		contentPane.setLayout(gl_contentPane);
+		setLayout(gl_contentPane);
 	}
 }
