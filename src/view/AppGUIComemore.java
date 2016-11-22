@@ -3,6 +3,8 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -86,13 +88,23 @@ public class AppGUIComemore extends JFrame implements ActionListener {
 		
 		if(e.getSource() == mniCargo) {
 			contentPane.remove(centro);
-			centro = new JanelaCargo();
+			try {
+				centro = new JanelaCargo();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			contentPane.add(centro, BorderLayout.CENTER);
 			contentPane.revalidate();
 		}
 		else if (e.getSource() == mniCategoria) {
 			contentPane.remove(centro);
-			centro = new JanelaCategoria();
+			try {
+				centro = new JanelaCategoria();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			contentPane.add(centro, BorderLayout.CENTER);
 			contentPane.revalidate();	
 			

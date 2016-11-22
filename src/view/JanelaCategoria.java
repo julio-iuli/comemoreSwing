@@ -9,21 +9,22 @@ import java.sql.SQLException;
 
 import javax.swing.*;
 
+import model.CargoDAO;
 import model.Categoria;
+import model.CategoriaDAO;
 
 public class JanelaCategoria extends JPanel implements ActionListener{
 
 	
 	private JButton criar, editar, excluir;
 	private JLabel catExistentes, catNome;
-	private JList lista;
+	private JTable tabela;
 	private JTextField campoNome;
-	private String[] categorias = {"Categoria 1", "Categoria 2", 
-			"Categoria 3"};
+	
 
 	
 
-	public JanelaCategoria() {
+	public JanelaCategoria() throws SQLException {
 		
 		//super("Categoria");
 		
@@ -44,12 +45,18 @@ public class JanelaCategoria extends JPanel implements ActionListener{
 		
 		editar = new JButton("Editar");
 		editar.setBounds(120, 390, 90, 30);
+		editar.addActionListener(this);
+
 		
 		excluir = new JButton("Excluir");
 		excluir.setBounds(220, 390, 90, 30);
+		excluir.addActionListener(this);
 
-		lista = new JList(categorias);
-		lista.setBounds(20, 50, 150, 250);
+		CategoriaDAO dao = new CategoriaDAO();
+		//função listar - toda a vez que a página é carregada
+		tabela = new JTable(dao.listar());
+		tabela.setBounds(20, 50, 150, 250);
+
 		
 		campoNome = new JTextField();
 		campoNome.setBounds(20, 340, 200, 20);
@@ -58,10 +65,10 @@ public class JanelaCategoria extends JPanel implements ActionListener{
 		
 		
 		add(criar);
-		//add(editar); Comentado atï¿½ habilitar esta funcionalidade
-		//add(excluir); Comentado atï¿½ habilitar esta funcionalidade
+		add(editar);
+		add(excluir);
 		add(catExistentes);
-		add(lista);
+		add(tabela);
 		add(campoNome);
 		add(catNome);
 		
@@ -97,7 +104,21 @@ public class JanelaCategoria extends JPanel implements ActionListener{
 			
 			
 			
+		} else if (ap.getSource() == excluir){
+			
+			JOptionPane.showMessageDialog(null, "Excluir - em construção");
+			
+		} else if (ap.getSource() == editar){
+			
+			JOptionPane.showMessageDialog(null, "Editar - em construção");
+
+			
 		}
+		
+		
+		
+		
+		
 	}
 	
 	
