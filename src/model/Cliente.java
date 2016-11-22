@@ -1,36 +1,36 @@
 package model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
-public class Cliente{
-	
-	
+//import java.awt.Toolkit;
+//import java.util.Date;
+
+public class Cliente {
+
 	private int id;
 	private String nome;
-	private byte resddd;
+	private int resddd;
 	private int restel;
-	private byte celddd;
+	private int celddd;
 	private int celtel;
 	private int rg;
-	private String rgEmissor;
+	private String rgemissor;
+	private int cpf;
+	private int cnpj;
+	private boolean pfpj;
 	private String email;
-	private Date dataNasc;
+	private LocalDate datanasc;
 	private String complemento;
-	private Logradouro logradouro;
-	private String recomendacaoNome;
-	private Date recomendacaoDataNasc;
+	private int idlogradouro;
+	private String recomendacaonome;
+	private LocalDate recomendacaodatanasc;
 	
-	
-	public Cliente() {
-		super();
-		// TODO Auto-generated constructor stub
+	public Cliente(){
+		
 	}
-
-
-	public Cliente(int id, String nome, byte resddd, int restel, byte celddd, int celtel, int rg, String rgEmissor,
-			 String email, Date dataNasc, String complemento, Logradouro logradouro,
-			String recomendacaoNome, Date recomendacaoDataNasc) {
-		super();
+	public Cliente(int id, String nome, int resddd, int restel, int celddd, int celtel, int rg, String rgemissor,
+					boolean pfpj, int cpf, int cnpj, String email, LocalDate datanasc, String complemento,
+					int idlogradouro, String recomendacaonome, LocalDate recomendacaodatanasc){
 		this.id = id;
 		this.nome = nome;
 		this.resddd = resddd;
@@ -38,165 +38,128 @@ public class Cliente{
 		this.celddd = celddd;
 		this.celtel = celtel;
 		this.rg = rg;
-		this.rgEmissor = rgEmissor;
+		this.rgemissor = rgemissor;
+		this.cpf = cpf;
+		this.cnpj = cnpj;
+		this.pfpj = pfpj;
 		this.email = email;
-		this.dataNasc = dataNasc;
+		this.datanasc = datanasc;
 		this.complemento = complemento;
-		this.logradouro = logradouro;
-		this.recomendacaoNome = recomendacaoNome;
-		this.recomendacaoDataNasc = recomendacaoDataNasc;
+		this.idlogradouro = idlogradouro;
+		this.recomendacaonome = recomendacaonome;
+		this.recomendacaodatanasc = recomendacaodatanasc;
+				
 	}
-
-
+	
+	
+	
 	public int getId() {
 		return id;
 	}
-
-
 	public void setId(int id) {
 		this.id = id;
 	}
-
-
 	public String getNome() {
 		return nome;
 	}
-
-
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
-
-	public byte getResddd() {
+	public int getResddd() {
 		return resddd;
 	}
-
-
-	public void setResddd(byte resddd) {
+	public void setResddd(int resddd) {
 		this.resddd = resddd;
 	}
-
-
 	public int getRestel() {
 		return restel;
 	}
-
-
 	public void setRestel(int restel) {
 		this.restel = restel;
 	}
-
-
-	public byte getCelddd() {
+	public int getCelddd() {
 		return celddd;
 	}
-
-
-	public void setCelddd(byte celddd) {
+	public void setCelddd(int celddd) {
 		this.celddd = celddd;
 	}
-
-
 	public int getCeltel() {
 		return celtel;
 	}
-
-
 	public void setCeltel(int celtel) {
 		this.celtel = celtel;
 	}
-
-
 	public int getRg() {
 		return rg;
 	}
-
-
 	public void setRg(int rg) {
 		this.rg = rg;
 	}
-
-
-	public String getRgEmissor() {
-		return rgEmissor;
+	public String getRgemissor() {
+		return rgemissor;
 	}
-
-
-	public void setRgEmissor(String rgEmissor) {
-		this.rgEmissor = rgEmissor;
+	public void setRgemissor(String rgemissor) {
+		this.rgemissor = rgemissor;
 	}
-
-
-	
+//	public String getTipodoc(){
+//		return tipodoc;
+//	}
+//	public void setTipoDoc(String tipodoc){
+//		this.tipodoc. tipodoc
+//	}
+	public int getCpf() {
+		return cpf;
+	}
+	public void setCpf(int cpf) {
+		this.cpf = cpf;
+	}
+	public int getCnpj() {
+		return cnpj;
+	}
+	public void setCnpj(int cnpj) {
+		this.cnpj = cnpj;
+	}
+	public boolean getPfpj() {
+		return pfpj;
+	}
+	public void setPfpj(boolean pfpj) {
+		this.pfpj = pfpj;
+	}
 	public String getEmail() {
 		return email;
 	}
-
-
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-
-	public Date getDataNasc() {
-		return dataNasc;
+	public LocalDate getDatanasc() {
+		return datanasc;
 	}
-
-
-	public void setDataNasc(Date dataNasc) {
-		this.dataNasc = dataNasc;
+	public void setDataNasc(LocalDate datanasc) {
+		this.datanasc = datanasc;
 	}
-
-
 	public String getComplemento() {
 		return complemento;
 	}
-
-
 	public void setComplemento(String complemento) {
 		this.complemento = complemento;
 	}
-
-
-	public Logradouro getLogradouro() {
-		return logradouro;
+	public int getIdlogradouro() {
+		return idlogradouro;
 	}
-
-
-	public void setLogradouro(Logradouro logradouro) {
-		this.logradouro = logradouro;
+	public void setIdlogradouro(int idlogradouro) {
+		this.idlogradouro = idlogradouro;
 	}
-
-
-	public String getRecomendacaoNome() {
-		return recomendacaoNome;
+	public String getRecomendacaonome() {
+		return recomendacaonome;
 	}
-
-
-	public void setRecomendacaoNome(String recomendacaoNome) {
-		this.recomendacaoNome = recomendacaoNome;
+	public void setRecomendacaonome(String recomendacaonome) {
+		this.recomendacaonome = recomendacaonome;
 	}
-
-
-	public Date getRecomendacaoDataNasc() {
-		return recomendacaoDataNasc;
+	public LocalDate getRecomendacaodatanasc() {
+		return recomendacaodatanasc;
 	}
-
-
-	public void setRecomendacaoDataNasc(Date recomendacaoDataNasc) {
-		this.recomendacaoDataNasc = recomendacaoDataNasc;
+	public void setRecomendacaodatanasc(LocalDate recomendacaodatanasc) {
+		this.recomendacaodatanasc = recomendacaodatanasc;
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
 }
