@@ -21,7 +21,7 @@ public class Conexao {
 	public Conexao() throws SQLException { // SQLException trata este tipo de
 											// exce��o
 
-		this.conexao = DriverManager.getConnection("jdbc:mysql://localhost:3306/comemore", "aluno", "senac"); // Driver
+		this.conexao = DriverManager.getConnection("jdbc:mysql://localhost:3306/comemore", "julio", "juju"); // Driver
 																										// Manager
 		// Criei um bd na minha m�quina para testar. Precisa alterar os parametros de nome e senha																								// �
 																										// o

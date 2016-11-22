@@ -1,5 +1,8 @@
 package view;
 
+import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -10,22 +13,24 @@ import java.sql.SQLException;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
 
 import model.Cargo;
+import model.CargoDAO;
 
 
-public class JanelaCargo extends JPanel implements ActionListener, ListSelectionListener {
+
+
+public class JanelaCargo extends JPanel implements ActionListener{
 
 	
 	private JButton criar, editar, excluir;
 	private JLabel carExistentes, carNome, carSalario;
-	private JList lista;
+	private JTable tabela;
 	private JTextField campoNome, campoSalario;
-	private String[] cargos = {"Cargo 1", "Cargo 2", 
-			"Cargo 3"};
 	private String cargoEscolhido;
 
-	public JanelaCargo() {
+	public JanelaCargo() throws SQLException {
 		
 		cargoEscolhido = new String();
 		
@@ -35,6 +40,7 @@ public class JanelaCargo extends JPanel implements ActionListener, ListSelection
 		
 		carExistentes = new JLabel("Cargos Existentes");
 		carExistentes.setBounds(20, 20, 130, 20);
+		
 
 		carNome = new JLabel("Cargo");
 		carNome.setBounds(20, 305, 200, 20);
@@ -48,13 +54,28 @@ public class JanelaCargo extends JPanel implements ActionListener, ListSelection
 		
 		editar = new JButton("Editar");
 		editar.setBounds(120, 390, 90, 30);
+		editar.addActionListener(this);
+
 		
 		excluir = new JButton("Excluir");
 		excluir.setBounds(220,390, 90, 30);
+		excluir.addActionListener(this);
 
-		lista = new JList(cargos);
-		lista.setBounds(20, 50, 150, 250);
-		lista.addListSelectionListener(this);
+		
+	
+		
+		
+		//função listar - toda a vez que a página é carregada
+		CargoDAO dao = new CargoDAO();
+		tabela = new JTable(dao.listar());
+		tabela.setBounds(20, 50, 150, 250);
+		
+		
+			
+		
+		
+	
+		
 		
 		campoNome = new JTextField();
 		campoNome.setBounds(20, 325, 200, 20);
@@ -63,16 +84,17 @@ public class JanelaCargo extends JPanel implements ActionListener, ListSelection
 		campoSalario.setBounds(20, 365, 200, 20);
 		
 		add(criar);
-		//add(editar); Comentado atï¿½ habilitar esta funcionalidade
-		//add(excluir); Comentado atï¿½ habilitar esta funcionalidade
+		add(editar); 
+		add(excluir);
 		add(carExistentes);
-		add(lista);
+		
 		add(campoNome);
 		add(campoSalario);
 		add(carSalario);
 		add(carNome);
+		add(tabela);
 		
-		//setVisible(true);
+		setVisible(true);
 		
 	}
 
@@ -92,6 +114,7 @@ public class JanelaCargo extends JPanel implements ActionListener, ListSelection
 				
 				JOptionPane.showMessageDialog(null, "Gravado");
 				
+								
 			} catch (SQLException erro) {
 				// TODO Auto-generated catch block
 				JOptionPane.showMessageDialog(null, erro);
@@ -100,18 +123,27 @@ public class JanelaCargo extends JPanel implements ActionListener, ListSelection
 			
 			
 			
-		}
-	}
-
-	@Override
-	public void valueChanged(ListSelectionEvent le) {
-		
-		if(le.getSource() == lista){
+		} else if (e.getSource() == editar){
 			
-			cargoEscolhido = lista.getSelectedValue().toString();
+			JOptionPane.showMessageDialog(null, "Editar - em construção");
+			
+		} else if (e.getSource() == excluir){
+			
+			JOptionPane.showMessageDialog(null, "Excluir - em construção");
+			
 		}
 		
-
+		
+		
+		
 	}
+	
+	
+	
+	
+
+	
+	
+	
 
 }
