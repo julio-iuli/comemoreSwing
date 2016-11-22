@@ -43,6 +43,7 @@ public class AppGUIComemore extends JFrame implements ActionListener {
 		//Cliente
 		menuBar.add(mnCliente);
 		mniClienteNovo = new JMenuItem("Novo");
+		mniClienteNovo.addActionListener(this);
 		mniClienteConsulta = new JMenuItem("Consulta");
 		mnCliente.add(mniClienteNovo);
 		mnCliente.add(mniClienteConsulta);
@@ -114,6 +115,9 @@ public class AppGUIComemore extends JFrame implements ActionListener {
 			centro = new JanelaTema();
 			contentPane.add(centro, BorderLayout.CENTER);
 			contentPane.revalidate();
+		}
+		else if (e.getSource() == mniClienteNovo) {
+			AppCliente viewCliente = new AppCliente();
 		}
 		
 	}
