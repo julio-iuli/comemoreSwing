@@ -1,14 +1,18 @@
 package model;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 //import java.util.Date;
+
+import javax.swing.table.DefaultTableModel;
 
 import view.Conexao;
 
 public class ClienteDAO {
    private Conexao conexao;
    private PreparedStatement prepararSQL;
+   private ResultSet resultado;
    
    public ClienteDAO() throws SQLException{
 	   this.conexao = new Conexao();
@@ -43,6 +47,50 @@ public void inserir (Cliente cliente) throws SQLException {
     
     prepararSQL.execute ();
   }
+
+public DefaultTableModel listar() throws SQLException{
+	
+	DefaultTableModel tabela = new DefaultTableModel();
+	
+	String sql = "select id, nome, datanasc, resddd, restel, email from cliente";
+	
+
+	tabela.addColumn("Id");
+	tabela.addColumn("Nome");
+	tabela.addColumn("Data de Nascimento");
+	tabela.addColumn("ddd");
+	tabela.addColumn("Telefone");
+	tabela.addColumn("Email");
+	
+	
+	prepararSQL = this.conexao.getConexao().prepareStatement(sql);
+	
+	resultado = prepararSQL.executeQuery();
+	
+	while(resultado.next()){
+		
+		String[] linha = {
+							resultado.getString("id"),
+							resultado.getString("nome"),
+							resultado.getString("datanasc"),
+							resultado.getString("resddd"),
+							resultado.getString("restel"),
+							resultado.getString("email")
+															
+							};
+		
+		tabela.addRow(linha);
+					
+	}
+	
+	prepararSQL.close();
+			
+		
+	
+	
+	return tabela;
+	
+} 
 
 }
 

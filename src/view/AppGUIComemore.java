@@ -47,6 +47,7 @@ public class AppGUIComemore extends JFrame implements ActionListener {
 		mniClienteNovo = new JMenuItem("Novo");
 		mniClienteNovo.addActionListener(this);
 		mniClienteConsulta = new JMenuItem("Consulta");
+		mniClienteConsulta.addActionListener(this);
 		mnCliente.add(mniClienteNovo);
 		mnCliente.add(mniClienteConsulta);
 		
@@ -120,6 +121,14 @@ public class AppGUIComemore extends JFrame implements ActionListener {
 		}
 		else if (e.getSource() == mniClienteNovo) {
 			AppCliente viewCliente = new AppCliente();
+		}
+		else if (e.getSource() == mniClienteConsulta) {
+			try {
+				JanelaConsultaCliente jcc = new JanelaConsultaCliente();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 		
 	}
