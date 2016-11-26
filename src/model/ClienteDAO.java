@@ -26,8 +26,8 @@ public void inserir (Cliente cliente) throws SQLException {
     prepararSQL.setInt(5,cliente.getCeltel());
     prepararSQL.setInt(6,cliente.getRg());
     prepararSQL.setString(7,cliente.getRgemissor());
-    prepararSQL.setInt(8,cliente.getCpf());
-    prepararSQL.setInt(9,cliente.getCnpj());
+    prepararSQL.setLong(8,cliente.getCpf());
+    prepararSQL.setLong(9,cliente.getCnpj());
     prepararSQL.setBoolean(10,cliente.getPfpj());
     prepararSQL.setString(11,cliente.getEmail());
     prepararSQL.setDate(12, java.sql.Date.valueOf(cliente.getDatanasc()));
