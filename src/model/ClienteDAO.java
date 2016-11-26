@@ -15,7 +15,8 @@ public class ClienteDAO {
    }
 
 public void inserir (Cliente cliente) throws SQLException {
-	String sql = "INSERT INTO cliente(nome,resddd,restel,celddd,celtel,rg,rgemissor,cpf,cnpj,pfpj,email,datanasc,complemento,idlogradouro,recomendacaonome,recomendacaodatanasc) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+	String sql = "INSERT INTO cliente("
+			+ "nome,resddd,restel,celddd,celtel,rg,rgemissor,cpf,cnpj,pfpj,email,datanasc,complemento,idlogradouro,recomendacaonome,recomendacaodatanasc) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 	prepararSQL = this.conexao.getConexao().prepareStatement(sql);
 	
     prepararSQL.setString(1,cliente.getNome());

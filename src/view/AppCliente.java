@@ -46,6 +46,7 @@ public class AppCliente extends JFrame implements ActionListener {
 	private JTextField txtUf;
 	private JTextField txtCep;
 	private String cepi;
+	private Endereco endereco;
 
 	public AppCliente() {
 
@@ -282,7 +283,7 @@ public class AppCliente extends JFrame implements ActionListener {
 			objCliente.setEmail(txtemail.getText());
 			objCliente.setDataNasc(LocalDate.parse(dataNasci.getJFormattedTextField().getText()));
 			objCliente.setComplemento(txtcomplemento.getText());
-			objCliente.setIdlogradouro(Integer.parseInt(txtlogradouro.getText()));
+			objCliente.setIdlogradouro(endereco.getLogradouro().getId());
 			objCliente.setRecomendacaonome(txtrecomendacaoNome.getText());
 			if(recomendacaoDataNasci.getJFormattedTextField().getValue() != null) {
 			objCliente.setRecomendacaodatanasc(LocalDate.parse(recomendacaoDataNasci.getJFormattedTextField().getText()));
@@ -333,7 +334,6 @@ public class AppCliente extends JFrame implements ActionListener {
 			try {
 				cepi = txtCep.getText();
 				EnderecoDAO dao = new EnderecoDAO();
-				Endereco endereco;
 				endereco = dao.buscarEndereco(Integer.parseInt(cepi));
 				txtUf.setText(endereco.getUf());
 				txtCidade.setText(endereco.getCidade());
