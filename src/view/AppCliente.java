@@ -99,7 +99,7 @@ public class AppCliente extends JFrame implements ActionListener {
 		//	txtPfPj = new JTextField(30);
 		//	txtPfPj.setBounds(195, 160, 150, 20);
 		
-		cboxPfPj = new JCheckBox("Pessoa Jur√≠dica?");
+		cboxPfPj = new JCheckBox("Pessoa Juridica?");
 		cboxPfPj.setBounds(130, 160, 150, 20);
 		cboxPfPj.addActionListener(this);
 		
@@ -139,7 +139,7 @@ public class AppCliente extends JFrame implements ActionListener {
 		txtlogradouro.setEditable(false);
 		txtlogradouro.setBounds(110, 527, 159, 20);
 		
-		lblrecomendacaoNome = new JLabel("Recomenda√ß√£o: ");
+		lblrecomendacaoNome = new JLabel("RecomendaÁ„oo: ");
 		lblrecomendacaoNome.setBounds(10, 335, 100, 20);
 		txtrecomendacaoNome = new JTextField(30);
 		txtrecomendacaoNome.setBounds(130, 335, 300, 20);
@@ -203,7 +203,7 @@ public class AppCliente extends JFrame implements ActionListener {
 		getContentPane().add(btnEnviar);
 		getContentPane().add(btnLimpar);
 		
-		lblEndereco = new JLabel("Endere√ßo");
+		lblEndereco = new JLabel("EndereÁo");
 		lblEndereco.setBounds(10, 434, 70, 15);
 		getContentPane().add(lblEndereco);
 		
@@ -274,11 +274,11 @@ public class AppCliente extends JFrame implements ActionListener {
 			objCliente.setPfpj(cboxPfPj.isSelected());
 			
 			if(cboxPfPj.isSelected()){
-				objCliente.setCnpj(Integer.parseInt(txtCnpj.getText()));
+				objCliente.setCnpj(Long.parseLong(txtCnpj.getText()));
 			} else {
 				objCliente.setRg(Integer.parseInt(txtrg.getText()));
 				objCliente.setRgemissor(txtrgEmissor.getText());
-				objCliente.setCpf(Integer.parseInt(txtCpf.getText()));
+				objCliente.setCpf(Long.parseLong(txtCpf.getText()));
 			}
 			objCliente.setEmail(txtemail.getText());
 			objCliente.setDataNasc(LocalDate.parse(dataNasci.getJFormattedTextField().getText()));
