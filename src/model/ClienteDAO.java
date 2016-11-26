@@ -32,7 +32,7 @@ public void inserir (Cliente cliente) throws SQLException {
     prepararSQL.setString(11,cliente.getEmail());
     prepararSQL.setDate(12, java.sql.Date.valueOf(cliente.getDatanasc()));
     prepararSQL.setString(13,cliente.getComplemento());
-    prepararSQL.setInt(14,cliente.getIdlogradouro());
+    prepararSQL.setInt(14,cliente.getLogradouro().getId());
     prepararSQL.setString(15,cliente.getRecomendacaonome());
     
     if (cliente.getRecomendacaodatanasc() != null){
