@@ -15,8 +15,8 @@ public class Cliente {
 	private int celtel;
 	private int rg;
 	private String rgemissor;
-	private int cpf;
-	private int cnpj;
+	private long cpf;
+	private long cnpj;
 	private boolean pfpj;
 	private String email;
 	private LocalDate datanasc;
@@ -29,7 +29,7 @@ public class Cliente {
 		
 	}
 	public Cliente(int id, String nome, int resddd, int restel, int celddd, int celtel, int rg, String rgemissor,
-					boolean pfpj, int cpf, int cnpj, String email, LocalDate datanasc, String complemento,
+					boolean pfpj, long cpf, long cnpj, String email, LocalDate datanasc, String complemento,
 					int idlogradouro, String recomendacaonome, LocalDate recomendacaodatanasc){
 		this.id = id;
 		this.nome = nome;
@@ -107,16 +107,16 @@ public class Cliente {
 //	public void setTipoDoc(String tipodoc){
 //		this.tipodoc. tipodoc
 //	}
-	public int getCpf() {
+	public long getCpf() {
 		return cpf;
 	}
-	public void setCpf(int cpf) {
+	public void setCpf(long cpf) {
 		this.cpf = cpf;
 	}
-	public int getCnpj() {
+	public long getCnpj() {
 		return cnpj;
 	}
-	public void setCnpj(int cnpj) {
+	public void setCnpj(long cnpj) {
 		this.cnpj = cnpj;
 	}
 	public boolean getPfpj() {
