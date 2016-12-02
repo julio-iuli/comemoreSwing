@@ -1,7 +1,8 @@
 package model;
 
     public class Categoria{
-        
+        //teste de push - master
+    	
         private int id;
         private String nome;
         //Associação:A pk de Categoria entra em tema

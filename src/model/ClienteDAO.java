@@ -48,6 +48,10 @@ public void inserir (Cliente cliente) throws SQLException {
     prepararSQL.execute ();
   }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 3916c7d82c3f316416551da03e2ad87cc7ec1328
 public DefaultTableModel listar() throws SQLException{
 	
 	DefaultTableModel tabela = new DefaultTableModel();
@@ -62,6 +66,16 @@ public DefaultTableModel listar() throws SQLException{
 	tabela.addColumn("Telefone");
 	tabela.addColumn("Email");
 	
+<<<<<<< HEAD
+=======
+	//n�o tem rela��o com o banco ainda
+	
+	String[] titulo = {"Id", "Nome", "Data de Nascimento", "DDD", "Telefone" ,"E-mail"};
+	
+	tabela.addRow(titulo);
+	
+			
+>>>>>>> 3916c7d82c3f316416551da03e2ad87cc7ec1328
 	
 	prepararSQL = this.conexao.getConexao().prepareStatement(sql);
 	
@@ -78,7 +92,10 @@ public DefaultTableModel listar() throws SQLException{
 							resultado.getString("email")
 															
 							};
+<<<<<<< HEAD
 		
+=======
+>>>>>>> 3916c7d82c3f316416551da03e2ad87cc7ec1328
 		tabela.addRow(linha);
 					
 	}
@@ -92,6 +109,15 @@ public DefaultTableModel listar() throws SQLException{
 	
 } 
 
+<<<<<<< HEAD
+=======
+
+
+
+
+
+
+>>>>>>> 3916c7d82c3f316416551da03e2ad87cc7ec1328
 }
 
 
