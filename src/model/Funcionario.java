@@ -4,6 +4,9 @@ import java.util.Date;
 
 public class Funcionario {
 	
+	//id, nome, resddd, restel, celddd, celtel, rg, rgemissor, cpf, pis,
+	//	datacontratacao, email, complemento, idlogradouro, login, senha, tipoadm, idcargo	
+	
 	private int id;
 	private String nome;
 	private byte resddd;
@@ -11,16 +14,16 @@ public class Funcionario {
 	private byte celddd;
 	private int celtel;
 	private int rg;
-	private String rgEmissor;
-	private int cpf;
-	private int pis;
-	private Date dataContratacao;
+	private String rgemissor;
+	private long cpf;
+	private long pis;
+	private Date datacontratacao;
 	private String email;
 	private String complemento;
 	private Logradouro logradouro;
 	private String login;
 	private String senha;
-	private byte tipoAdm;
+	private byte tipoadm;
 	private Cargo cargo;
 	
 	
@@ -30,9 +33,9 @@ public class Funcionario {
 	}
 
 
-	public Funcionario(int id, String nome, byte resddd, int restel, byte celddd, int celtel, int rg, String rgEmissor,
-			int cpf, int pis, Date dataContratacao, String email, String complemento, Logradouro logradouro,
-			String login, String senha, byte tipoAdm, Cargo cargo) {
+	public Funcionario(int id, String nome, byte resddd, int restel, byte celddd, int celtel, int rg, String rgemissor,
+			long cpf, int pis, Date datacontratacao, String email, String complemento, Logradouro logradouro,
+			String login, String senha, byte tipoadm, Cargo cargo) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -41,16 +44,16 @@ public class Funcionario {
 		this.celddd = celddd;
 		this.celtel = celtel;
 		this.rg = rg;
-		this.rgEmissor = rgEmissor;
+		this.rgemissor = rgemissor;
 		this.cpf = cpf;
 		this.pis = pis;
-		this.dataContratacao = dataContratacao;
+		this.datacontratacao = datacontratacao;
 		this.email = email;
 		this.complemento = complemento;
 		this.logradouro = logradouro;
 		this.login = login;
 		this.senha = senha;
-		this.tipoAdm = tipoAdm;
+		this.tipoadm = tipoadm;
 		this.cargo = cargo;
 	}
 
@@ -126,42 +129,42 @@ public class Funcionario {
 
 
 	public String getRgEmissor() {
-		return rgEmissor;
+		return rgemissor;
 	}
 
 
 	public void setRgEmissor(String rgEmissor) {
-		this.rgEmissor = rgEmissor;
+		this.rgemissor = rgEmissor;
 	}
 
 
-	public int getCpf() {
+	public long getCpf() {
 		return cpf;
 	}
 
 
-	public void setCpf(int cpf) {
+	public void setCpf(long cpf) {
 		this.cpf = cpf;
 	}
 
 
-	public int getPis() {
+	public long getPis() {
 		return pis;
 	}
 
 
-	public void setPis(int pis) {
+	public void setPis(long pis) {
 		this.pis = pis;
 	}
 
 
 	public Date getDataContratacao() {
-		return dataContratacao;
+		return datacontratacao;
 	}
 
 
-	public void setDataContratacao(Date dataContratacao) {
-		this.dataContratacao = dataContratacao;
+	public void setDataContratacao(Date datacontratacao) {
+		this.datacontratacao = datacontratacao;
 	}
 
 
@@ -216,17 +219,17 @@ public class Funcionario {
 
 
 	public byte getTipoAdm() {
-		return tipoAdm;
+		return tipoadm;
 	}
 
 
-	public void setTipoAdm(byte tipoAdm) {
-		this.tipoAdm = tipoAdm;
+	public void setTipoAdm(byte tipoadm) {
+		this.tipoadm = tipoadm;
 	}
 
 
 	public Cargo getCargo() {
-		return cargo;
+		return 	cargo;
 	}
 
 

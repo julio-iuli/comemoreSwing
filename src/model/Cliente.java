@@ -21,7 +21,7 @@ public class Cliente {
 	private String email;
 	private LocalDate datanasc;
 	private String complemento;
-	private int idlogradouro;
+	private Logradouro logradouro;
 	private String recomendacaonome;
 	private LocalDate recomendacaodatanasc;
 	
@@ -30,7 +30,7 @@ public class Cliente {
 	}
 	public Cliente(int id, String nome, int resddd, int restel, int celddd, int celtel, int rg, String rgemissor,
 					boolean pfpj, long cpf, long cnpj, String email, LocalDate datanasc, String complemento,
-					int idlogradouro, String recomendacaonome, LocalDate recomendacaodatanasc){
+					Logradouro logradouro, String recomendacaonome, LocalDate recomendacaodatanasc){
 		this.id = id;
 		this.nome = nome;
 		this.resddd = resddd;
@@ -45,7 +45,7 @@ public class Cliente {
 		this.email = email;
 		this.datanasc = datanasc;
 		this.complemento = complemento;
-		this.idlogradouro = idlogradouro;
+		this.logradouro = logradouro;
 		this.recomendacaonome = recomendacaonome;
 		this.recomendacaodatanasc = recomendacaodatanasc;
 				
@@ -143,11 +143,11 @@ public class Cliente {
 	public void setComplemento(String complemento) {
 		this.complemento = complemento;
 	}
-	public int getIdlogradouro() {
-		return idlogradouro;
+	public Logradouro getLogradouro() {
+		return logradouro;
 	}
-	public void setIdlogradouro(int idlogradouro) {
-		this.idlogradouro = idlogradouro;
+	public void setLogradouro(Logradouro logradouro) {
+		this.logradouro = logradouro;
 	}
 	public String getRecomendacaonome() {
 		return recomendacaonome;

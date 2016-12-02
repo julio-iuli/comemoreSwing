@@ -283,7 +283,7 @@ public class AppCliente extends JFrame implements ActionListener {
 			objCliente.setEmail(txtemail.getText());
 			objCliente.setDataNasc(LocalDate.parse(dataNasci.getJFormattedTextField().getText()));
 			objCliente.setComplemento(txtcomplemento.getText());
-			objCliente.setIdlogradouro(endereco.getLogradouro().getId());
+			objCliente.setLogradouro(endereco.getLogradouro());
 			objCliente.setRecomendacaonome(txtrecomendacaoNome.getText());
 			if(recomendacaoDataNasci.getJFormattedTextField().getValue() != null) {
 			objCliente.setRecomendacaodatanasc(LocalDate.parse(recomendacaoDataNasci.getJFormattedTextField().getText()));
