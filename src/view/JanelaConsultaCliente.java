@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -22,6 +23,7 @@ public class JanelaConsultaCliente extends JFrame implements ActionListener {
 	private JTextField txtTxtbuscarcliente;
 	private JTable table;
 	private JScrollPane scrollPane;
+	private JButton btnDeletar;
 
 
 	/**
@@ -46,6 +48,10 @@ public class JanelaConsultaCliente extends JFrame implements ActionListener {
 		panel.add(txtTxtbuscarcliente);
 		txtTxtbuscarcliente.setColumns(40);
 		
+		btnDeletar = new JButton("Deletar");
+		btnDeletar.addActionListener(this);
+		panel.add(btnDeletar);
+		
 		ClienteDAO dao = new ClienteDAO();
 		
 		table = new JTable(dao.listar());
@@ -57,9 +63,22 @@ public class JanelaConsultaCliente extends JFrame implements ActionListener {
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
-		
+	public void actionPerformed(ActionEvent ev) {
+
+		if (ev.getSource() == btnDeletar) {
+			//JOptionPane.showMessageDialog(null, table.getValueAt(table.getSelectedRow(), 0));
+			try {
+				ClienteDAO dao = new ClienteDAO();
+				int idCliente = Integer.parseInt((String)table.getValueAt(table.getSelectedRow(), 0));
+				dao.deletar(idCliente);
+				JOptionPane.showMessageDialog(null, "Cliente Deletado Com Sucesso!");
+				this.dispose();
+				new JanelaConsultaCliente();
+			} catch (SQLException e) {
+				JOptionPane.showMessageDialog(null, "Erro ao Deletar");
+				e.printStackTrace();
+			}
+		}
 	}
 
 }

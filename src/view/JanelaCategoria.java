@@ -9,7 +9,6 @@ import java.sql.SQLException;
 
 import javax.swing.*;
 
-import model.CargoDAO;
 import model.Categoria;
 import model.CategoriaDAO;
 
@@ -53,7 +52,7 @@ public class JanelaCategoria extends JPanel implements ActionListener{
 		excluir.addActionListener(this);
 
 		CategoriaDAO dao = new CategoriaDAO();
-		//função listar - toda a vez que a página é carregada
+		//funï¿½ï¿½o listar - toda a vez que a pï¿½gina ï¿½ carregada
 		tabela = new JTable(dao.listar());
 		tabela.setBounds(20, 50, 150, 250);
 
@@ -106,11 +105,11 @@ public class JanelaCategoria extends JPanel implements ActionListener{
 			
 		} else if (ap.getSource() == excluir){
 			
-			JOptionPane.showMessageDialog(null, "Excluir - em construção");
+			JOptionPane.showMessageDialog(null, "Excluir - em construï¿½ï¿½o");
 			
 		} else if (ap.getSource() == editar){
 			
-			JOptionPane.showMessageDialog(null, "Editar - em construção");
+			JOptionPane.showMessageDialog(null, "Editar - em construï¿½ï¿½o");
 
 			
 		}
