@@ -31,7 +31,6 @@ public class JanelaConsultaCliente extends JFrame implements ActionListener {
 	 * @throws SQLException 
 	 */
 	public JanelaConsultaCliente() throws SQLException {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 474);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
