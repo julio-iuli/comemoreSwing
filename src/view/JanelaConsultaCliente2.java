@@ -17,7 +17,7 @@ import javax.swing.JTextField;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 
-public class JanelaConsultaCliente2 extends JFrame implements ActionListener {
+public class JanelaConsultaCliente2 extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtTxtbuscarcliente;
@@ -30,7 +30,7 @@ public class JanelaConsultaCliente2 extends JFrame implements ActionListener {
 	 * Create the frame.
 	 * @throws SQLException 
 	 */
-	public JanelaConsultaCliente2() throws SQLException {
+	public JanelaConsultaCliente2(JanelaPedido jp) throws SQLException {
 		setBounds(100, 100, 800, 474);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -47,8 +47,23 @@ public class JanelaConsultaCliente2 extends JFrame implements ActionListener {
 		panel.add(txtTxtbuscarcliente);
 		txtTxtbuscarcliente.setColumns(40);
 		
-		btnSelecionar = new JButton("Deletar");
-		btnSelecionar.addActionListener(this);
+		btnSelecionar = new JButton("Selecionar");
+		btnSelecionar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					ClienteDAO dao = new ClienteDAO();
+					//int idCliente = Integer.parseInt((String)table.getValueAt(table.getSelectedRow(), 0));
+					String nomeCliente = (String)table.getValueAt(table.getSelectedRow(), 1);
+					jp.receberCliente(nomeCliente);
+				} catch (SQLException err) {
+					JOptionPane.showMessageDialog(null, "Erro ao Deletar");
+					err.printStackTrace();
+				}
+				
+			}
+		});
 		panel.add(btnSelecionar);
 		
 		ClienteDAO dao = new ClienteDAO();
@@ -60,23 +75,4 @@ public class JanelaConsultaCliente2 extends JFrame implements ActionListener {
 				
 		setVisible(true);
 	}
-
-	@Override
-	public void actionPerformed(ActionEvent ev) {
-
-		if (ev.getSource() == btnSelecionar) {
-			//JOptionPane.showMessageDialog(null, table.getValueAt(table.getSelectedRow(), 0));
-			try {
-				ClienteDAO dao = new ClienteDAO();
-				int idCliente = Integer.parseInt((String)table.getValueAt(table.getSelectedRow(), 0));
-				
-				
-				
-			} catch (SQLException e) {
-				JOptionPane.showMessageDialog(null, "Erro ao Deletar");
-				e.printStackTrace();
-			}
-		}
-	}
-
 }

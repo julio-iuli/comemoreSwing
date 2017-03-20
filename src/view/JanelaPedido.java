@@ -2,6 +2,7 @@ package view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
@@ -24,6 +25,7 @@ public class JanelaPedido extends JPanel implements ActionListener {
 	private JTextField txtNomecliente;
 	private JDatePickerImpl dataEntrega;
 	private JButton btnSelecionarCliente;
+	JanelaConsultaCliente2 jc2;
 
 	/**
 	 * Create the panel.
@@ -61,6 +63,7 @@ public class JanelaPedido extends JPanel implements ActionListener {
 		textArea.setWrapStyleWord(true);
 		
 		btnSelecionarCliente = new JButton("Selecionar Cliente");
+		btnSelecionarCliente.addActionListener(this);
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -124,12 +127,19 @@ public class JanelaPedido extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent ev) {
 
 		if (ev.getSource() == btnSelecionarCliente) {
-			
+			try {
+				jc2 = new JanelaConsultaCliente2(this);
+				jc2.setVisible(true);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 	}
 	
 	public void receberCliente(String recebe) {
 		txtNomecliente.setText(recebe);
+		if (jc2 != null){jc2.setVisible(false);jc2.dispose();}
 	}
 }
