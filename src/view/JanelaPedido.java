@@ -15,11 +15,15 @@ import org.jdatepicker.impl.JDatePickerImpl;
 
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextField;
+import javax.swing.JTextArea;
+import javax.swing.DropMode;
+import javax.swing.JButton;
 
 public class JanelaPedido extends JPanel implements ActionListener {
 	private JTextField txtNometema;
 	private JTextField txtNomecliente;
 	private JDatePickerImpl dataEntrega;
+	private JButton btnSelecionarCliente;
 
 	/**
 	 * Create the panel.
@@ -50,12 +54,20 @@ public class JanelaPedido extends JPanel implements ActionListener {
 		dataEntrega = JulioDatePicker.criar(2017, true);
 		
 		JLabel lblLugarDatepicker = new JLabel("lugar datepicker");
+		
+		JTextArea textArea = new JTextArea();
+		textArea.setToolTipText("");
+		textArea.setLineWrap(true);
+		textArea.setWrapStyleWord(true);
+		
+		btnSelecionarCliente = new JButton("Selecionar Cliente");
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(textArea, GroupLayout.PREFERRED_SIZE, 223, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblCadastrarPedido)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(lblTema)
@@ -64,7 +76,9 @@ public class JanelaPedido extends JPanel implements ActionListener {
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(lblCliente)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(txtNomecliente, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addComponent(txtNomecliente, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addGap(88)
+							.addComponent(btnSelecionarCliente))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(lblDataDeEntrega)
 							.addPreferredGap(ComponentPlacement.RELATED)
@@ -72,7 +86,7 @@ public class JanelaPedido extends JPanel implements ActionListener {
 						.addComponent(lblLogradouroDeEntrega)
 						.addComponent(lblComplemento)
 						.addComponent(lblObservaoSobreO))
-					.addContainerGap(308, Short.MAX_VALUE))
+					.addContainerGap(140, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -86,7 +100,8 @@ public class JanelaPedido extends JPanel implements ActionListener {
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblCliente)
-						.addComponent(txtNomecliente, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(txtNomecliente, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnSelecionarCliente))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblDataDeEntrega)
@@ -97,15 +112,24 @@ public class JanelaPedido extends JPanel implements ActionListener {
 					.addComponent(lblComplemento)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(lblObservaoSobreO)
-					.addContainerGap(143, Short.MAX_VALUE))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(textArea, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(31, Short.MAX_VALUE))
 		);
 		setLayout(groupLayout);
 
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
+	public void actionPerformed(ActionEvent ev) {
+
+		if (ev.getSource() == btnSelecionarCliente) {
+			
+		}
 		
+	}
+	
+	public void receberCliente(String recebe) {
+		txtNomecliente.setText(recebe);
 	}
 }
