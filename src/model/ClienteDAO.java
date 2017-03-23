@@ -4,6 +4,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 //import java.util.Date;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 
 import javax.swing.table.DefaultTableModel;
 
@@ -13,9 +15,10 @@ public class ClienteDAO {
    private Conexao conexao;
    private PreparedStatement prepararSQL;
    private ResultSet resultado;
-   
+
    public ClienteDAO() throws SQLException{
 	   this.conexao = new Conexao();
+	   
    }
 
 	public void inserir (Cliente cliente) throws SQLException {
@@ -94,6 +97,19 @@ public class ClienteDAO {
 		prepararSQL.close();
 	}
 	
+	public Cliente selecionar(int idCliente) throws SQLException {
+		Cliente cliente = new Cliente();
+		
+		String sql = "SELECT id, nome FROM cliente WHERE id = ?";
+		prepararSQL = this.conexao.getConexao().prepareStatement(sql);
+		prepararSQL.setInt(1, idCliente);
+		resultado = prepararSQL.executeQuery();
+		cliente.setId(resultado.getInt(0));
+		cliente.setNome(resultado.getString(1));
+		//prepararSQL.close();
+		return cliente;
+	}
+
 }
 
 

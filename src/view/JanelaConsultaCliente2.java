@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import model.Cliente;
 import model.ClienteDAO;
 
 import javax.swing.JButton;
@@ -54,11 +55,14 @@ public class JanelaConsultaCliente2 extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					ClienteDAO dao = new ClienteDAO();
-					//int idCliente = Integer.parseInt((String)table.getValueAt(table.getSelectedRow(), 0));
-					String nomeCliente = (String)table.getValueAt(table.getSelectedRow(), 1);
-					jp.receberCliente(nomeCliente);
+					int idCliente = (int)table.getValueAt(table.getSelectedRow(), 0);
+					JOptionPane.showMessageDialog(null, idCliente);
+					//int idCliente = (int)table.getValueAt(table.getSelectedRow(), 0);
+					Cliente cliente = new Cliente();
+					cliente = dao.selecionar(idCliente);
+					jp.receberCliente(cliente);
 				} catch (SQLException err) {
-					JOptionPane.showMessageDialog(null, "Erro ao Deletar");
+					JOptionPane.showMessageDialog(null, "Erro ao Selecionar" + err.toString());
 					err.printStackTrace();
 				}
 				

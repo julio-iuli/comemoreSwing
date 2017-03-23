@@ -14,6 +14,11 @@ import javax.swing.SwingConstants;
 
 import org.jdatepicker.impl.JDatePickerImpl;
 
+import model.Cliente;
+import model.Funcionario;
+import model.Logradouro;
+import model.Tema;
+
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
@@ -25,7 +30,14 @@ public class JanelaPedido extends JPanel implements ActionListener {
 	private JTextField txtNomecliente;
 	private JDatePickerImpl dataEntrega;
 	private JButton btnSelecionarCliente;
-	JanelaConsultaCliente2 jc2;
+	private JButton btnSelecionarTema;
+	private JanelaConsultaCliente2 jc2;
+	private JanelaConsultaTema jct;
+	private Cliente clientePedido;
+	private Logradouro logradouroPedido;
+	private Funcionario funcionarioPedido;
+	private Tema temaCliente;
+	
 
 	/**
 	 * Create the panel.
@@ -64,6 +76,10 @@ public class JanelaPedido extends JPanel implements ActionListener {
 		
 		btnSelecionarCliente = new JButton("Selecionar Cliente");
 		btnSelecionarCliente.addActionListener(this);
+		
+		btnSelecionarTema = new JButton("Selecionar Tema");
+		btnSelecionarTema.addActionListener(this);
+		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -73,23 +89,27 @@ public class JanelaPedido extends JPanel implements ActionListener {
 						.addComponent(textArea, GroupLayout.PREFERRED_SIZE, 223, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblCadastrarPedido)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(lblTema)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(txtNometema, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(lblCliente)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(txtNomecliente, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addGap(88)
-							.addComponent(btnSelecionarCliente))
-						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(lblDataDeEntrega)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(lblLugarDatepicker))
 						.addComponent(lblLogradouroDeEntrega)
 						.addComponent(lblComplemento)
-						.addComponent(lblObservaoSobreO))
-					.addContainerGap(140, Short.MAX_VALUE))
+						.addComponent(lblObservaoSobreO)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(lblCliente)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(txtNomecliente, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(lblTema)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(txtNometema, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+							.addGap(88)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(btnSelecionarTema)
+								.addComponent(btnSelecionarCliente))))
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -99,7 +119,8 @@ public class JanelaPedido extends JPanel implements ActionListener {
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblTema)
-						.addComponent(txtNometema, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(txtNometema, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnSelecionarTema))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblCliente)
@@ -117,7 +138,7 @@ public class JanelaPedido extends JPanel implements ActionListener {
 					.addComponent(lblObservaoSobreO)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(textArea, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(31, Short.MAX_VALUE))
+					.addContainerGap(21, Short.MAX_VALUE))
 		);
 		setLayout(groupLayout);
 
@@ -134,12 +155,22 @@ public class JanelaPedido extends JPanel implements ActionListener {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		} else if (ev.getSource() == btnSelecionarTema) {
+			try {
+				jct = new JanelaConsultaTema();
+				jct.setVisible(true);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 		}
 		
 	}
 	
-	public void receberCliente(String recebe) {
-		txtNomecliente.setText(recebe);
+	public void receberCliente(Cliente cliente) {
+		clientePedido = cliente;
+		txtNomecliente.setText(clientePedido.getNome());
 		if (jc2 != null){jc2.setVisible(false);jc2.dispose();}
 	}
 }

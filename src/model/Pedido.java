@@ -1,25 +1,35 @@
 package model;
 
-import java.util.Date;
+import java.sql.Timestamp;
+import java.time.LocalDate;
 
 public class Pedido {
 	
 	private int id;
-	private Date dataPedido;
-	private Date dataEntrega;
+	private LocalDate dataPedido;
+	private Timestamp dataEntrega;
 	private String obsPedido;
 	private String complemento;
 	private Logradouro logradouro;
 	private Cliente cliente;
 	private Funcionario funcionario;
+	private Tema tema;
 	
 	
+	public Tema getTema() {
+		return tema;
+	}
+
+	public void setTema(Tema tema) {
+		this.tema = tema;
+	}
+
 	public Pedido() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Pedido(int id, Date dataPedido, Date dataEntrega, String obsPedido, String complemento,
+	public Pedido(int id, LocalDate dataPedido, Timestamp dataEntrega, String obsPedido, String complemento,
 			Logradouro logradouro, Cliente cliente, Funcionario funcionario) {
 		super();
 		this.id = id;
@@ -41,19 +51,19 @@ public class Pedido {
 		this.id = id;
 	}
 
-	public Date getDataPedido() {
+	public LocalDate getDataPedido() {
 		return dataPedido;
 	}
 
-	public void setDataPedido(Date dataPedido) {
+	public void setDataPedido(LocalDate dataPedido) {
 		this.dataPedido = dataPedido;
 	}
 
-	public Date getDataEntrega() {
+	public Timestamp getDataEntrega() {
 		return dataEntrega;
 	}
 
-	public void setDataEntrega(Date dataEntrega) {
+	public void setDataEntrega(Timestamp dataEntrega) {
 		this.dataEntrega = dataEntrega;
 	}
 

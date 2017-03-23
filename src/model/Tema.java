@@ -1,6 +1,6 @@
 package model;
 
-class Tema{
+public class Tema{
     
     private int id;
     private String nome, descricao, status, dataCompra, imgTema;//observar imgTema porque pode ser outra classe no futuro.
