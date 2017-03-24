@@ -10,11 +10,14 @@ import java.awt.GridLayout;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 
 import org.jdatepicker.impl.JDatePickerImpl;
 
 import model.Cliente;
+import model.Endereco;
+import model.EnderecoDAO;
 import model.Funcionario;
 import model.Logradouro;
 import model.Tema;
@@ -29,8 +32,7 @@ public class JanelaPedido extends JPanel implements ActionListener {
 	private JTextField txtNometema;
 	private JTextField txtNomecliente;
 	private JDatePickerImpl dataEntrega;
-	private JButton btnSelecionarCliente;
-	private JButton btnSelecionarTema;
+	private JButton btnSelecionarCliente, btnSelecionarTema, btnBuscaCep;
 	private JanelaConsultaCliente2 jc2;
 	private JanelaConsultaTema jct;
 	private Cliente clientePedido;
@@ -118,7 +120,8 @@ public class JanelaPedido extends JPanel implements ActionListener {
 		txtCep = new JTextField();
 		txtCep.setColumns(10);
 		
-		JButton btnBuscaCep = new JButton("Busca CEP");
+		btnBuscaCep = new JButton("Busca CEP");
+		btnBuscaCep.addActionListener(this);
 		
 		txtComplemento = new JTextField();
 		txtComplemento.setColumns(10);
@@ -276,6 +279,19 @@ public class JanelaPedido extends JPanel implements ActionListener {
 				e.printStackTrace();
 			}
 			
+		} else if ( ev.getSource() == btnBuscaCep ) {
+			try {
+				Endereco endereco = new Endereco();
+				EnderecoDAO dao = new EnderecoDAO();
+				endereco = dao.buscarEndereco(Integer.parseInt(txtCep.getText()));
+				txtUf.setText(endereco.getUf());
+				txtCidade.setText(endereco.getCidade());
+				txtBairro.setText(endereco.getBairro());
+				txtLogradouro.setText(endereco.getLogradouro().getNome());
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				JOptionPane.showMessageDialog(null, e.getSQLState());
+			}
 		}
 		
 	}
