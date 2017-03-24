@@ -3,6 +3,8 @@ package view;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
@@ -20,6 +22,8 @@ import model.Endereco;
 import model.EnderecoDAO;
 import model.Funcionario;
 import model.Logradouro;
+import model.Pedido;
+import model.PedidoDAO;
 import model.Tema;
 
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -32,13 +36,13 @@ public class JanelaPedido extends JPanel implements ActionListener {
 	private JTextField txtNometema;
 	private JTextField txtNomecliente;
 	private JDatePickerImpl dataEntrega;
-	private JButton btnSelecionarCliente, btnSelecionarTema, btnBuscaCep;
+	private JButton btnSelecionarCliente, btnSelecionarTema, btnBuscaCep, btnGravarPedido;
 	private JanelaConsultaCliente2 jc2;
 	private JanelaConsultaTema jct;
 	private Cliente clientePedido;
 	private Logradouro logradouroPedido;
 	private Funcionario funcionarioPedido;
-	private Tema temaCliente, temaPedido;
+	private Tema temaPedido;
 	private JTextField txtLogradouro;
 	private JTextField txtBairro;
 	private JTextField txtCidade;
@@ -46,7 +50,7 @@ public class JanelaPedido extends JPanel implements ActionListener {
 	private JTextField txtCep;
 	private JTextField txtComplemento;
 	private JTextField txtHora;
-	
+	private JTextArea textArea;
 
 	/**
 	 * Create the panel.
@@ -80,7 +84,7 @@ public class JanelaPedido extends JPanel implements ActionListener {
 		
 		JLabel lblLugarDatepicker = new JLabel("lugar datepicker");
 		
-		JTextArea textArea = new JTextArea();
+		textArea = new JTextArea();
 		textArea.setToolTipText("");
 		textArea.setLineWrap(true);
 		textArea.setWrapStyleWord(true);
@@ -126,7 +130,8 @@ public class JanelaPedido extends JPanel implements ActionListener {
 		txtComplemento = new JTextField();
 		txtComplemento.setColumns(10);
 		
-		JButton btnGravarPedido = new JButton("Gravar Pedido");
+		btnGravarPedido = new JButton("Gravar Pedido");
+		btnGravarPedido.addActionListener(this);
 		
 		JLabel lblHoraDaEntrega = new JLabel("Hora da entrega");
 		
@@ -173,7 +178,7 @@ public class JanelaPedido extends JPanel implements ActionListener {
 									.addPreferredGap(ComponentPlacement.RELATED)
 									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 										.addComponent(txtHora, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-										.addComponent(lblLugarDatepicker))))
+										.addComponent(dataEntrega))))
 							.addGap(25)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
@@ -211,7 +216,7 @@ public class JanelaPedido extends JPanel implements ActionListener {
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 								.addComponent(lblDataDeEntrega)
-								.addComponent(lblLugarDatepicker))
+								.addComponent(dataEntrega))
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 								.addComponent(lblHoraDaEntrega)
@@ -288,9 +293,33 @@ public class JanelaPedido extends JPanel implements ActionListener {
 				txtCidade.setText(endereco.getCidade());
 				txtBairro.setText(endereco.getBairro());
 				txtLogradouro.setText(endereco.getLogradouro().getNome());
+				logradouroPedido = endereco.getLogradouro();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				JOptionPane.showMessageDialog(null, e.getSQLState());
+			}
+		} else if ( ev.getSource() == btnGravarPedido) {
+			try {
+				PedidoDAO dao = new PedidoDAO();
+				Pedido pedido = new Pedido();
+				
+				pedido.setCliente(clientePedido);
+				pedido.setComplemento(txtComplemento.getText());
+				pedido.setDataEntrega(LocalDate.parse(dataEntrega.getJFormattedTextField().getText()));
+				pedido.setDataPedido(LocalDate.now());
+				funcionarioPedido = new Funcionario();funcionarioPedido.setId(1);
+				pedido.setFuncionario(funcionarioPedido);
+				pedido.setHoraEntrega(LocalTime.parse(txtHora.getText()));
+				pedido.setLogradouro(logradouroPedido);
+				pedido.setObsPedido(textArea.getText());
+				pedido.setTema(temaPedido);
+				
+				dao.inserir(pedido);
+				
+				JOptionPane.showMessageDialog(null, "Pedido Gravado com sucesso!!!");
+				this.repaint();
+			} catch (SQLException err) {
+				JOptionPane.showMessageDialog(null, err);
 			}
 		}
 		
