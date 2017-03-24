@@ -55,9 +55,7 @@ public class JanelaConsultaCliente2 extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					ClienteDAO dao = new ClienteDAO();
-					int idCliente = (int)table.getValueAt(table.getSelectedRow(), 0);
-					JOptionPane.showMessageDialog(null, idCliente);
-					//int idCliente = (int)table.getValueAt(table.getSelectedRow(), 0);
+					int idCliente = Integer.parseInt(table.getValueAt(table.getSelectedRow(), 0).toString());
 					Cliente cliente = new Cliente();
 					cliente = dao.selecionar(idCliente);
 					jp.receberCliente(cliente);

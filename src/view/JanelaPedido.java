@@ -36,7 +36,14 @@ public class JanelaPedido extends JPanel implements ActionListener {
 	private Cliente clientePedido;
 	private Logradouro logradouroPedido;
 	private Funcionario funcionarioPedido;
-	private Tema temaCliente;
+	private Tema temaCliente, temaPedido;
+	private JTextField txtLogradouro;
+	private JTextField txtBairro;
+	private JTextField txtCidade;
+	private JTextField txtUf;
+	private JTextField txtCep;
+	private JTextField txtComplemento;
+	private JTextField txtHora;
 	
 
 	/**
@@ -53,16 +60,18 @@ public class JanelaPedido extends JPanel implements ActionListener {
 		
 		JLabel lblDataDeEntrega = new JLabel("Data de Entrega");
 		
-		JLabel lblLogradouroDeEntrega = new JLabel("Logradouro de Entrega");
+		JLabel lblLogradouroDeEntrega = new JLabel("Endereço de Entrega:");
 		
 		JLabel lblComplemento = new JLabel("Complemento");
 		
 		JLabel lblObservaoSobreO = new JLabel("Observação sobre o pedido");
 		
 		txtNometema = new JTextField();
+		txtNometema.setEditable(false);
 		txtNometema.setColumns(10);
 		
 		txtNomecliente = new JTextField();
+		txtNomecliente.setEditable(false);
 		txtNomecliente.setColumns(10);
 		
 		dataEntrega = JulioDatePicker.criar(2017, true);
@@ -80,21 +89,54 @@ public class JanelaPedido extends JPanel implements ActionListener {
 		btnSelecionarTema = new JButton("Selecionar Tema");
 		btnSelecionarTema.addActionListener(this);
 		
+		JLabel lblUf = new JLabel("UF");
+		
+		JLabel lblCidade = new JLabel("Cidade");
+		
+		JLabel lblBairro = new JLabel("Bairro");
+		
+		JLabel lblLogradouro = new JLabel("Logradouro");
+		
+		JLabel lblCep = new JLabel("CEP");
+		
+		txtLogradouro = new JTextField();
+		txtLogradouro.setEditable(false);
+		txtLogradouro.setColumns(10);
+		
+		txtBairro = new JTextField();
+		txtBairro.setEditable(false);
+		txtBairro.setColumns(10);
+		
+		txtCidade = new JTextField();
+		txtCidade.setEditable(false);
+		txtCidade.setColumns(10);
+		
+		txtUf = new JTextField();
+		txtUf.setEditable(false);
+		txtUf.setColumns(10);
+		
+		txtCep = new JTextField();
+		txtCep.setColumns(10);
+		
+		JButton btnBuscaCep = new JButton("Busca CEP");
+		
+		txtComplemento = new JTextField();
+		txtComplemento.setColumns(10);
+		
+		JButton btnGravarPedido = new JButton("Gravar Pedido");
+		
+		JLabel lblHoraDaEntrega = new JLabel("Hora da entrega");
+		
+		txtHora = new JTextField();
+		txtHora.setColumns(10);
+		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(textArea, GroupLayout.PREFERRED_SIZE, 223, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblCadastrarPedido)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(lblDataDeEntrega)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(lblLugarDatepicker))
-						.addComponent(lblLogradouroDeEntrega)
-						.addComponent(lblComplemento)
-						.addComponent(lblObservaoSobreO)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addGroup(groupLayout.createSequentialGroup()
@@ -104,12 +146,47 @@ public class JanelaPedido extends JPanel implements ActionListener {
 								.addGroup(groupLayout.createSequentialGroup()
 									.addComponent(lblTema)
 									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(txtNometema, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-							.addGap(88)
+									.addComponent(txtNometema, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+								.addComponent(lblLogradouroDeEntrega)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+										.addComponent(lblLogradouro)
+										.addComponent(lblBairro)
+										.addComponent(lblCidade)
+										.addComponent(lblUf))
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+										.addComponent(txtUf, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+										.addComponent(txtCidade, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+										.addComponent(txtBairro, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+										.addComponent(txtLogradouro, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+										.addComponent(txtCep, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+										.addComponent(btnBuscaCep)))
+								.addComponent(lblCep)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+										.addComponent(lblDataDeEntrega)
+										.addComponent(lblHoraDaEntrega))
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+										.addComponent(txtHora, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+										.addComponent(lblLugarDatepicker))))
+							.addGap(25)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+									.addPreferredGap(ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+									.addComponent(lblObservaoSobreO)
+									.addGap(28))
+								.addComponent(textArea, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
 								.addComponent(btnSelecionarTema)
-								.addComponent(btnSelecionarCliente))))
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+								.addComponent(btnSelecionarCliente)))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblComplemento)
+								.addComponent(txtComplemento, GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE))
+							.addGap(65)
+							.addComponent(btnGravarPedido)))
+					.addContainerGap())
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -126,19 +203,54 @@ public class JanelaPedido extends JPanel implements ActionListener {
 						.addComponent(lblCliente)
 						.addComponent(txtNomecliente, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnSelecionarCliente))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblDataDeEntrega)
-						.addComponent(lblLugarDatepicker))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(lblLogradouroDeEntrega)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(lblComplemento)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(lblObservaoSobreO)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(textArea, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(21, Short.MAX_VALUE))
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lblDataDeEntrega)
+								.addComponent(lblLugarDatepicker))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lblHoraDaEntrega)
+								.addComponent(txtHora, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addGap(16)
+							.addComponent(lblLogradouroDeEntrega)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lblUf)
+								.addComponent(txtUf, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lblCidade)
+								.addComponent(txtCidade, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lblBairro)
+								.addComponent(txtBairro, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lblLogradouro)
+								.addComponent(txtLogradouro, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblCep)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(txtCep, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(btnBuscaCep))))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(18)
+							.addComponent(lblObservaoSobreO)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(textArea, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE)))
+					.addGap(10)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(lblComplemento)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(txtComplemento, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(btnGravarPedido))
+					.addContainerGap(25, Short.MAX_VALUE))
 		);
 		setLayout(groupLayout);
 
@@ -157,7 +269,7 @@ public class JanelaPedido extends JPanel implements ActionListener {
 			}
 		} else if (ev.getSource() == btnSelecionarTema) {
 			try {
-				jct = new JanelaConsultaTema();
+				jct = new JanelaConsultaTema(this);
 				jct.setVisible(true);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -172,5 +284,11 @@ public class JanelaPedido extends JPanel implements ActionListener {
 		clientePedido = cliente;
 		txtNomecliente.setText(clientePedido.getNome());
 		if (jc2 != null){jc2.setVisible(false);jc2.dispose();}
+	}
+	
+	public void receberTema(Tema tema) {
+		temaPedido = tema;
+		txtNometema.setText(temaPedido.getNome());
+		if (jct != null){jct.setVisible(false);jct.dispose();}
 	}
 }

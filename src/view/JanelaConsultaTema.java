@@ -10,7 +10,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import model.Cliente;
 import model.ClienteDAO;
+import model.Tema;
 import model.TemaDAOJulio;
 
 import javax.swing.JButton;
@@ -18,20 +20,20 @@ import javax.swing.JTextField;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 
-public class JanelaConsultaTema extends JFrame implements ActionListener {
+public class JanelaConsultaTema extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtTxtbuscartema;
 	private JTable table;
 	private JScrollPane scrollPane;
-	private JButton btnDeletar;
+	private JButton btnSelecionar;
 
 
 	/**
 	 * Create the frame.
 	 * @throws SQLException 
 	 */
-	public JanelaConsultaTema() throws SQLException {
+	public JanelaConsultaTema(JanelaPedido jp) throws SQLException {
 		setBounds(100, 100, 800, 474);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -48,9 +50,25 @@ public class JanelaConsultaTema extends JFrame implements ActionListener {
 		panel.add(txtTxtbuscartema);
 		txtTxtbuscartema.setColumns(40);
 		
-		btnDeletar = new JButton("Deletar");
-		btnDeletar.addActionListener(this);
-		panel.add(btnDeletar);
+		btnSelecionar = new JButton("Selecionar");
+		btnSelecionar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				try {
+					TemaDAOJulio dao = new TemaDAOJulio();
+					int idTema = Integer.parseInt(table.getValueAt(table.getSelectedRow(), 0).toString());
+					Tema tema = new Tema();
+					tema = dao.selecionar(idTema);
+					jp.receberTema(tema);
+				} catch (SQLException err) {
+					JOptionPane.showMessageDialog(null, "Erro ao Selecionar" + err.toString());
+					err.printStackTrace();
+				}
+			}
+		});
+		panel.add(btnSelecionar);
 		
 		TemaDAOJulio dao = new TemaDAOJulio();
 		
@@ -60,32 +78,5 @@ public class JanelaConsultaTema extends JFrame implements ActionListener {
 		contentPane.add(scrollPane, BorderLayout.CENTER);
 				
 		setVisible(true);
-	}
-/*
-	@Override
-	public void actionPerformed(ActionEvent ev) {
-
-		if (ev.getSource() == btnDeletar) {
-			//JOptionPane.showMessageDialog(null, table.getValueAt(table.getSelectedRow(), 0));
-			try {
-				ClienteDAO dao = new ClienteDAO();
-				int idCliente = Integer.parseInt((String)table.getValueAt(table.getSelectedRow(), 0));
-				dao.deletar(idCliente);
-				JOptionPane.showMessageDialog(null, "Cliente Deletado Com Sucesso!");
-				this.dispose();
-				new JanelaConsultaCliente();
-			} catch (SQLException e) {
-				JOptionPane.showMessageDialog(null, "Erro ao Deletar");
-				e.printStackTrace();
-			}
-		}
-	}
-*/
-
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 }

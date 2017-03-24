@@ -60,6 +60,20 @@ public class TemaDAOJulio {
 		return tabela;
 	}
 	
+	public Tema selecionar(int idTema) throws SQLException {
+		Tema tema = new Tema();
+		
+		String sql = "SELECT id, nome FROM tema WHERE id = ?";
+		prepararSQL = this.conexao.getConexao().prepareStatement(sql);
+		prepararSQL.setInt(1, idTema);
+		resultado = prepararSQL.executeQuery();
+		resultado.next();
+		//JOptionPane.showMessageDialog(null, resultado.getString("nome"));
+		tema.setId(resultado.getInt("id"));
+		tema.setNome(resultado.getString("nome"));
+		prepararSQL.close();
+		return tema;
+	}
 	
 
 }

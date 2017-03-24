@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import view.Conexao;
@@ -104,9 +105,11 @@ public class ClienteDAO {
 		prepararSQL = this.conexao.getConexao().prepareStatement(sql);
 		prepararSQL.setInt(1, idCliente);
 		resultado = prepararSQL.executeQuery();
-		cliente.setId(resultado.getInt(0));
-		cliente.setNome(resultado.getString(1));
-		//prepararSQL.close();
+		resultado.next();
+		//JOptionPane.showMessageDialog(null, resultado.getString("nome"));
+		cliente.setId(resultado.getInt("id"));
+		cliente.setNome(resultado.getString("nome"));
+		prepararSQL.close();
 		return cliente;
 	}
 
