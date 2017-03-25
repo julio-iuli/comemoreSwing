@@ -80,6 +80,8 @@ public class AppGUIComemore extends JFrame implements ActionListener {
 		mniPedidoConsulta = new JMenuItem("Consulta");
 		mnPedido.add(mniPedidoNovo);
 		mnPedido.add(mniPedidoConsulta);
+		
+		mniPedidoNovo.addActionListener(this);
 	}
 	
 	public static void main(String[] args) {
@@ -128,6 +130,17 @@ public class AppGUIComemore extends JFrame implements ActionListener {
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
+			}
+		}
+		
+		else if (e.getSource() == mniPedidoNovo) {
+			try {
+				contentPane.remove(centro);
+				centro = new JanelaPedido();
+				contentPane.add(centro, BorderLayout.CENTER);
+				contentPane.revalidate();
+			} catch (Exception err) {
+				err.printStackTrace();
 			}
 		}
 		

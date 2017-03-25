@@ -1,26 +1,45 @@
 package model;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class Pedido {
 	
 	private int id;
-	private Date dataPedido;
-	private Date dataEntrega;
+	private LocalDate dataPedido;
+	private LocalDate dataEntrega;
 	private String obsPedido;
 	private String complemento;
 	private Logradouro logradouro;
 	private Cliente cliente;
 	private Funcionario funcionario;
+	private Tema tema;
+	private LocalTime horaEntrega;
 	
 	
+	public LocalTime getHoraEntrega() {
+		return horaEntrega;
+	}
+
+	public void setHoraEntrega(LocalTime horaEntrega) {
+		this.horaEntrega = horaEntrega;
+	}
+
+	public Tema getTema() {
+		return tema;
+	}
+
+	public void setTema(Tema tema) {
+		this.tema = tema;
+	}
+
 	public Pedido() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Pedido(int id, Date dataPedido, Date dataEntrega, String obsPedido, String complemento,
-			Logradouro logradouro, Cliente cliente, Funcionario funcionario) {
+	public Pedido(int id, LocalDate dataPedido, LocalDate dataEntrega, String obsPedido, String complemento,
+			Logradouro logradouro, Cliente cliente, Funcionario funcionario, LocalTime horaEntrega) {
 		super();
 		this.id = id;
 		this.dataPedido = dataPedido;
@@ -30,6 +49,7 @@ public class Pedido {
 		this.logradouro = logradouro;
 		this.cliente = cliente;
 		this.funcionario = funcionario;
+		this.horaEntrega = horaEntrega;
 		
 	}
 
@@ -41,19 +61,19 @@ public class Pedido {
 		this.id = id;
 	}
 
-	public Date getDataPedido() {
+	public LocalDate getDataPedido() {
 		return dataPedido;
 	}
 
-	public void setDataPedido(Date dataPedido) {
+	public void setDataPedido(LocalDate dataPedido) {
 		this.dataPedido = dataPedido;
 	}
 
-	public Date getDataEntrega() {
+	public LocalDate getDataEntrega() {
 		return dataEntrega;
 	}
 
-	public void setDataEntrega(Date dataEntrega) {
+	public void setDataEntrega(LocalDate dataEntrega) {
 		this.dataEntrega = dataEntrega;
 	}
 

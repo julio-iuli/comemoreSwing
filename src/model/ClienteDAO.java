@@ -4,7 +4,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 //import java.util.Date;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import view.Conexao;
@@ -13,9 +16,10 @@ public class ClienteDAO {
    private Conexao conexao;
    private PreparedStatement prepararSQL;
    private ResultSet resultado;
-   
+
    public ClienteDAO() throws SQLException{
 	   this.conexao = new Conexao();
+	   
    }
 
 	public void inserir (Cliente cliente) throws SQLException {
@@ -94,6 +98,21 @@ public class ClienteDAO {
 		prepararSQL.close();
 	}
 	
+	public Cliente selecionar(int idCliente) throws SQLException {
+		Cliente cliente = new Cliente();
+		
+		String sql = "SELECT id, nome FROM cliente WHERE id = ?";
+		prepararSQL = this.conexao.getConexao().prepareStatement(sql);
+		prepararSQL.setInt(1, idCliente);
+		resultado = prepararSQL.executeQuery();
+		resultado.next();
+		//JOptionPane.showMessageDialog(null, resultado.getString("nome"));
+		cliente.setId(resultado.getInt("id"));
+		cliente.setNome(resultado.getString("nome"));
+		prepararSQL.close();
+		return cliente;
+	}
+
 }
 
 
