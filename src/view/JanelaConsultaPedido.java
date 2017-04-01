@@ -25,7 +25,7 @@ public class JanelaConsultaPedido extends JFrame implements ActionListener {
 	private JTextField txtBuscarPedido;
 	private JTable table;
 	private JScrollPane scrollPane;
-	private JButton btnDeletar;
+	private JButton btnDeletar, btnBuscarPedido;
 	private JRadioButton rdbtnTema;
 	private JRadioButton rdbtnCliente;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
@@ -54,7 +54,8 @@ public class JanelaConsultaPedido extends JFrame implements ActionListener {
 		buttonGroup.add(rdbtnCliente);
 		panel.add(rdbtnCliente);
 		
-		JButton btnBuscarPedido = new JButton("Buscar");
+		btnBuscarPedido = new JButton("Buscar");
+		btnBuscarPedido.addActionListener(this);
 		panel.add(btnBuscarPedido);
 		
 		txtBuscarPedido = new JTextField();
@@ -91,7 +92,28 @@ public class JanelaConsultaPedido extends JFrame implements ActionListener {
 				JOptionPane.showMessageDialog(null, "Erro ao Deletar");
 				e.printStackTrace();
 			}
+		} else if (ev.getSource() == btnBuscarPedido) {
+			String colunaBusca = "";
+			if (rdbtnTema.isSelected()) {
+				colunaBusca = "where nometema like \"%" + txtBuscarPedido.getText() + "%\"";
+			} else if (rdbtnCliente.isSelected()) {
+				colunaBusca = "where nomecliente like \"%" + txtBuscarPedido.getText() + "%\"";
+			}
+			
+			try {
+				PedidoDAO dao = new PedidoDAO();
+				table = new JTable(dao.listar(colunaBusca));
+				scrollPane = new JScrollPane(table);
+				scrollPane.setToolTipText("");
+				contentPane.add(scrollPane, BorderLayout.CENTER);
+				setVisible(true);
+				JOptionPane.showMessageDialog(null, "buscou?");
+			} catch (Exception err) {
+				JOptionPane.showMessageDialog(null, err.getMessage());
+			}
 		}
 	}
+	
+	
 
 }

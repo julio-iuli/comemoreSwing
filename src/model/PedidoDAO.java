@@ -45,7 +45,7 @@ public class PedidoDAO {
 		   
 			DefaultTableModel tabela = new DefaultTableModel();
 			
-			String sql = "select id, nomecliente, nometema, dataentrega, horaentrega, nomelogradouro, complemento from pedidoview" + busca;
+			String sql = "select id, nomecliente, nometema, dataentrega, horaentrega, nomelogradouro, complemento from pedidoview " + busca;
 			
 		
 			tabela.addColumn("Id");
