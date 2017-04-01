@@ -82,6 +82,7 @@ public class AppGUIComemore extends JFrame implements ActionListener {
 		mnPedido.add(mniPedidoConsulta);
 		
 		mniPedidoNovo.addActionListener(this);
+		mniPedidoConsulta.addActionListener(this);
 	}
 	
 	public static void main(String[] args) {
@@ -141,6 +142,15 @@ public class AppGUIComemore extends JFrame implements ActionListener {
 				contentPane.revalidate();
 			} catch (Exception err) {
 				err.printStackTrace();
+			}
+		}
+		
+		else if (e.getSource() == mniPedidoConsulta) {
+			try {
+				JanelaConsultaPedido jcp = new JanelaConsultaPedido();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
 		}
 		

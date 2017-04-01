@@ -66,7 +66,7 @@ public class PedidoDAO {
 									resultado.getString("id"),
 									resultado.getString("nomecliente"),
 									resultado.getString("nometema"),
-									resultado.getString("dataentrga"),
+									resultado.getString("dataentrega"),
 									resultado.getString("horaentrega"),
 									resultado.getString("nomelogradouro"),
 									resultado.getString("complemento")
