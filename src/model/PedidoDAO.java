@@ -4,6 +4,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.swing.table.DefaultTableModel;
+
 import view.Conexao;
 
 public class PedidoDAO {
@@ -35,4 +37,56 @@ public class PedidoDAO {
 			prepararSQL.close();
 	   }
 
+	   	   
+	   public DefaultTableModel listar(String busca) throws SQLException{
+			
+		   
+		   if (busca == null) {busca = "";}
+		   
+			DefaultTableModel tabela = new DefaultTableModel();
+			
+			String sql = "select id, nomecliente, nometema, dataentrega, horaentrega, nomelogradouro, complemento from pedidoview" + busca;
+			
+		
+			tabela.addColumn("Id");
+			tabela.addColumn("Cliente");
+			tabela.addColumn("Tema");
+			tabela.addColumn("Entrega");
+			tabela.addColumn("Hora");
+			tabela.addColumn("Logradgouro");
+			tabela.addColumn("Complemento");
+			
+			prepararSQL = this.conexao.getConexao().prepareStatement(sql);
+			
+			resultado = prepararSQL.executeQuery();
+			
+			while(resultado.next()){
+				
+				String[] linha = {
+									resultado.getString("id"),
+									resultado.getString("nomecliente"),
+									resultado.getString("nometema"),
+									resultado.getString("dataentrga"),
+									resultado.getString("horaentrega"),
+									resultado.getString("nomelogradouro"),
+									resultado.getString("complemento")
+																	
+									};
+				
+				tabela.addRow(linha);
+							
+			}
+			
+			prepararSQL.close();
+			
+			return tabela;
+		}
+	   
+		public void deletar(int idPedido) throws SQLException {
+			String sql = "DELETE FROM pedido WHERE id = ?";
+			prepararSQL = this.conexao.getConexao().prepareStatement(sql);
+			prepararSQL.setInt(1, idPedido);
+			prepararSQL.execute();
+			prepararSQL.close();
+		}
 }
