@@ -25,5 +25,22 @@ public class JulioDatePicker {
 		
 	}
 	
+public static JDatePickerImpl criar(int ano, int mes, int dia, boolean x) {
+		
+		Properties p = new Properties();
+		p.put("text.today", "Hoje");
+		p.put("text.month", "Mês");
+		p.put("text.year", "Ano");
+		
+		UtilDateModel model = new UtilDateModel();
+		model.setDate(ano, mes-1, dia);
+		model.setSelected(x);
+		JDatePanelImpl datePanel = new JDatePanelImpl(model, p);
+		JDatePickerImpl datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
+		
+		return datePicker;
+		
+	}
+	
 
 }

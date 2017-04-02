@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import model.Pedido;
 import model.PedidoDAO;
 
 import javax.swing.JButton;
@@ -29,6 +30,7 @@ public class JanelaConsultaPedido extends JFrame implements ActionListener {
 	private JRadioButton rdbtnTema;
 	private JRadioButton rdbtnCliente;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
+	private JButton btnAlterar;
 
 
 	/**
@@ -65,6 +67,10 @@ public class JanelaConsultaPedido extends JFrame implements ActionListener {
 		btnDeletar = new JButton("Deletar");
 		btnDeletar.addActionListener(this);
 		panel.add(btnDeletar);
+		
+		btnAlterar = new JButton("Alterar");
+		btnAlterar.addActionListener(this);
+		panel.add(btnAlterar);
 		
 		PedidoDAO dao = new PedidoDAO();
 		
@@ -111,6 +117,13 @@ public class JanelaConsultaPedido extends JFrame implements ActionListener {
 			} catch (Exception err) {
 				JOptionPane.showMessageDialog(null, err.getMessage());
 			}
+		
+		} else if (ev.getSource() == btnAlterar) {
+			
+			JanelaPedido jp = new JanelaPedido(Integer.parseInt((String)table.getValueAt(table.getSelectedRow(), 0)));
+			jp.setVisible(true);
+			this.dispose();
+			
 		}
 	}
 	

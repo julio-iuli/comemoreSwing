@@ -34,5 +34,24 @@ public class EnderecoDAO {
 		  		  
 		  return endereco;
 	  }
+	  
+	  public Endereco buscarEnderecoId(int id) throws SQLException {
+		  String sql = "SELECT * FROM enderecoview where id = ?";
+		  prepararSQL = this.conexao.getConexao().prepareStatement(sql);
+		  prepararSQL.setInt(1, id);
+		  resultado = prepararSQL.executeQuery();
+		  resultado.next();
+		  Logradouro logradouro = new Logradouro();
+		  logradouro.setCep(Integer.parseInt(resultado.getString("cep")));
+		  logradouro.setId(Integer.parseInt(resultado.getString("id")));
+		  logradouro.setNome(resultado.getString("logradouro"));
+		  Endereco endereco = new Endereco();
+		  endereco.setLogradouro(logradouro);
+		  endereco.setBairro(resultado.getString("bairro"));
+		  endereco.setCidade(resultado.getString("cidade"));
+		  endereco.setUf(resultado.getString("uf"));
+		  		  
+		  return endereco;
+	  }
 
 }

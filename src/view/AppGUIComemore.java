@@ -137,7 +137,7 @@ public class AppGUIComemore extends JFrame implements ActionListener {
 		else if (e.getSource() == mniPedidoNovo) {
 			try {
 				contentPane.remove(centro);
-				centro = new JanelaPedido();
+				centro = new JanelaPedido(0);
 				contentPane.add(centro, BorderLayout.CENTER);
 				contentPane.revalidate();
 			} catch (Exception err) {
@@ -148,6 +148,7 @@ public class AppGUIComemore extends JFrame implements ActionListener {
 		else if (e.getSource() == mniPedidoConsulta) {
 			try {
 				JanelaConsultaPedido jcp = new JanelaConsultaPedido();
+				jcp.setVisible(true);
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();

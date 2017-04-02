@@ -51,25 +51,47 @@ public class JanelaPedido extends JPanel implements ActionListener {
 	private JTextField txtComplemento;
 	private JTextField txtHora;
 	private JTextArea textArea;
+	private int idPedido;
+	private Pedido pedidoAlterar;
+	private Endereco enderecoAlterar;
 
 	/**
 	 * Create the panel.
 	 */
-	public JanelaPedido() {
+	public JanelaPedido(int id) {
+		idPedido = id;
+		String titulo;
+		if(idPedido != 0){
+			
+			titulo="ALTERAR";
+			
+			try {
+				PedidoDAO dao = new PedidoDAO();
+				pedidoAlterar = dao.selecionar(id);
+				EnderecoDAO daoEnd = new EnderecoDAO();
+				enderecoAlterar = daoEnd.buscarEnderecoId(pedidoAlterar.getLogradouro().getId());
+				clientePedido = pedidoAlterar.getCliente();
+				temaPedido = pedidoAlterar.getTema();
+				logradouroPedido = pedidoAlterar.getLogradouro();
+				dataEntrega = JulioDatePicker.criar(
+						pedidoAlterar.getDataEntrega().getYear(),pedidoAlterar.getDataEntrega().getMonthValue(),
+						pedidoAlterar.getDataEntrega().getDayOfMonth(),	true);
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		
-		JLabel lblCadastrarPedido = new JLabel("CADASTRAR PEDIDO");
+		} else {titulo="CADASTRAR"; pedidoAlterar = null;}
+		
+		JLabel lblCadastrarPedido = new JLabel(titulo + " PEDIDO");
 		lblCadastrarPedido.setVerticalAlignment(SwingConstants.TOP);
 		
 		JLabel lblTema = new JLabel("Tema");
-		
 		JLabel lblCliente = new JLabel("Cliente");
-		
 		JLabel lblDataDeEntrega = new JLabel("Data de Entrega");
-		
 		JLabel lblLogradouroDeEntrega = new JLabel("Endereço de Entrega:");
-		
 		JLabel lblComplemento = new JLabel("Complemento");
-		
 		JLabel lblObservaoSobreO = new JLabel("Observação sobre o pedido");
 		
 		txtNometema = new JTextField();
@@ -137,6 +159,18 @@ public class JanelaPedido extends JPanel implements ActionListener {
 		
 		txtHora = new JTextField();
 		txtHora.setColumns(10);
+		
+		if(pedidoAlterar != null) {
+			txtNometema.setText(pedidoAlterar.getTema().getNome());
+			txtNomecliente.setText(pedidoAlterar.getCliente().getNome());
+			txtUf.setText(enderecoAlterar.getUf());
+			txtCidade.setText(enderecoAlterar.getCidade());
+			txtBairro.setText(enderecoAlterar.getBairro());
+			txtLogradouro.setText(enderecoAlterar.getLogradouro().getNome());
+			txtComplemento.setText(pedidoAlterar.getComplemento());
+			txtHora.setToolTipText(pedidoAlterar.getHoraEntrega().toString());
+			textArea.setText(pedidoAlterar.getObsPedido());
+		}
 		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
@@ -300,6 +334,9 @@ public class JanelaPedido extends JPanel implements ActionListener {
 			}
 		} else if ( ev.getSource() == btnGravarPedido) {
 			try {
+				
+				String mensagem = "";
+			
 				PedidoDAO dao = new PedidoDAO();
 				Pedido pedido = new Pedido();
 				
@@ -314,9 +351,14 @@ public class JanelaPedido extends JPanel implements ActionListener {
 				pedido.setObsPedido(textArea.getText());
 				pedido.setTema(temaPedido);
 				
-				dao.inserir(pedido);
-				
-				JOptionPane.showMessageDialog(null, "Pedido Gravado com sucesso!!!");
+				if (pedidoAlterar==null){
+					dao.inserir(pedido);
+					mensagem = "Pedido Gravado com sucesso!";
+				} else {
+					dao.alterar(pedido);
+					mensagem = "Pedido Alterado com sucesso!";
+				}
+				JOptionPane.showMessageDialog(null, mensagem);
 				this.repaint();
 			} catch (SQLException err) {
 				JOptionPane.showMessageDialog(null, err);

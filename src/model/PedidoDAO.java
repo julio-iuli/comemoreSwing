@@ -1,8 +1,12 @@
 package model;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 import javax.swing.table.DefaultTableModel;
 
@@ -82,11 +86,62 @@ public class PedidoDAO {
 			return tabela;
 		}
 	   
-		public void deletar(int idPedido) throws SQLException {
+	   public void deletar(int idPedido) throws SQLException {
 			String sql = "DELETE FROM pedido WHERE id = ?";
 			prepararSQL = this.conexao.getConexao().prepareStatement(sql);
 			prepararSQL.setInt(1, idPedido);
 			prepararSQL.execute();
 			prepararSQL.close();
 		}
+	   
+	   public void alterar(Pedido pedido) throws SQLException {
+		   
+		   String sql = "UPDATE pedido set "
+		   		+ "dataentrega = ?, obspedido = ?, complemento = ?, idlogradouro = ?, "
+		   		+ "idcliente = ?, idtema = ?, horaentrega = ? where id = ?";
+		   
+		   prepararSQL = this.conexao.getConexao().prepareStatement(sql);
+		   prepararSQL.setDate(1, Date.valueOf(pedido.getDataEntrega()));
+		   prepararSQL.setString(2, pedido.getObsPedido());
+		   prepararSQL.setString(3, pedido.getComplemento());
+		   prepararSQL.setInt(4, pedido.getLogradouro().getId());
+		   prepararSQL.setInt(5, pedido.getCliente().getId());
+		   prepararSQL.setInt(6, pedido.getTema().getId());
+		   prepararSQL.setTime(7, Time.valueOf(pedido.getHoraEntrega()));
+		   prepararSQL.setInt(8, pedido.getId());
+		   
+		   resultado = prepararSQL.executeQuery();
+		   resultado.next();
+	   }
+	   
+	   //ACHO QUE NEM VOU USAR ISSO...
+	   public Pedido selecionar(int id) throws SQLException {
+		   Pedido pedido = new Pedido();
+		   
+		   String sql = "SELECT * FROM pedidoview WHERE id = ?";
+			prepararSQL = this.conexao.getConexao().prepareStatement(sql);
+			prepararSQL.setInt(1, id);
+			resultado = prepararSQL.executeQuery();
+			resultado.next();
+			//JOptionPane.showMessageDialog(null, resultado.getString("nome"));
+			pedido.setId(resultado.getInt("id"));
+			pedido.setDataEntrega(LocalDate.parse(resultado.getDate("dataentrega").toString()));
+			pedido.setComplemento(resultado.getString("complemento"));
+			pedido.setHoraEntrega(LocalTime.parse(resultado.getTime("horaentrega").toString()));
+			
+			Cliente cliente = new Cliente();
+			cliente.setId(resultado.getInt("idcliente"));
+			cliente.setNome(resultado.getString("nomecliente"));
+			pedido.setCliente(cliente);
+			
+			Logradouro logradouro = new Logradouro();
+			logradouro.setId(resultado.getInt("idlogradouro"));
+			logradouro.setNome(resultado.getString("nomelogradouro"));
+			
+			Tema tema = new Tema();
+			tema.setId(resultado.getInt("idtema"));
+			tema.setNome(resultado.getString("nometema"));
+		   
+		   return pedido;
+	   }
 }
