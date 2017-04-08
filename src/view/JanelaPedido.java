@@ -68,6 +68,7 @@ public class JanelaPedido extends JPanel implements ActionListener {
 			try {
 				PedidoDAO dao = new PedidoDAO();
 				pedidoAlterar = dao.selecionar(id);
+				JOptionPane.showMessageDialog(null, pedidoAlterar.toString());
 				EnderecoDAO daoEnd = new EnderecoDAO();
 				enderecoAlterar = daoEnd.buscarEnderecoId(pedidoAlterar.getLogradouro().getId());
 				clientePedido = pedidoAlterar.getCliente();
@@ -102,7 +103,7 @@ public class JanelaPedido extends JPanel implements ActionListener {
 		txtNomecliente.setEditable(false);
 		txtNomecliente.setColumns(10);
 		
-		dataEntrega = JulioDatePicker.criar(2017, true);
+		if(pedidoAlterar==null) dataEntrega = JulioDatePicker.criar(2017, true);
 		
 		JLabel lblLugarDatepicker = new JLabel("lugar datepicker");
 		
@@ -167,8 +168,9 @@ public class JanelaPedido extends JPanel implements ActionListener {
 			txtCidade.setText(enderecoAlterar.getCidade());
 			txtBairro.setText(enderecoAlterar.getBairro());
 			txtLogradouro.setText(enderecoAlterar.getLogradouro().getNome());
+			txtCep.setText(String.valueOf(enderecoAlterar.getLogradouro().getCep()));
 			txtComplemento.setText(pedidoAlterar.getComplemento());
-			txtHora.setToolTipText(pedidoAlterar.getHoraEntrega().toString());
+			txtHora.setText(pedidoAlterar.getHoraEntrega().toString());
 			textArea.setText(pedidoAlterar.getObsPedido());
 		}
 		
@@ -343,6 +345,7 @@ public class JanelaPedido extends JPanel implements ActionListener {
 				pedido.setCliente(clientePedido);
 				pedido.setComplemento(txtComplemento.getText());
 				pedido.setDataEntrega(LocalDate.parse(dataEntrega.getJFormattedTextField().getText()));
+				// no alterar, a linha a baixo vai sempre mudar a data do pedido
 				pedido.setDataPedido(LocalDate.now());
 				funcionarioPedido = new Funcionario();funcionarioPedido.setId(1);
 				pedido.setFuncionario(funcionarioPedido);

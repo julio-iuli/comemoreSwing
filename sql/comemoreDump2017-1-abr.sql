@@ -412,7 +412,7 @@ UNLOCK TABLES;
 /*!50001 SET character_set_results     = utf8 */;
 /*!50001 SET collation_connection      = utf8_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`julio`@`%` SQL SECURITY DEFINER */
+/*!50013 DEFINER=`aluno`@`%` SQL SECURITY DEFINER */
 /*!50001 VIEW `enderecoview` AS select `uf`.`id` AS `uf`,`cidade`.`nome` AS `cidade`,`bairro`.`nome` AS `bairro`,`logradouro`.`nome` AS `logradouro`,`logradouro`.`cep` AS `cep`,`logradouro`.`idbairro` AS `idbairro`,`logradouro`.`id` AS `id` from (((`uf` join `cidade` on((`uf`.`id` = `cidade`.`iduf`))) join `bairro` on((`cidade`.`id` = `bairro`.`idcidade`))) join `logradouro` on((`bairro`.`id` = `logradouro`.`idbairro`))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;

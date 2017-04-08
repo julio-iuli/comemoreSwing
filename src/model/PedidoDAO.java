@@ -137,10 +137,12 @@ public class PedidoDAO {
 			Logradouro logradouro = new Logradouro();
 			logradouro.setId(resultado.getInt("idlogradouro"));
 			logradouro.setNome(resultado.getString("nomelogradouro"));
+			pedido.setLogradouro(logradouro);
 			
 			Tema tema = new Tema();
 			tema.setId(resultado.getInt("idtema"));
 			tema.setNome(resultado.getString("nometema"));
+			pedido.setTema(tema);
 		   
 		   return pedido;
 	   }

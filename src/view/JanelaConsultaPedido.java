@@ -120,9 +120,14 @@ public class JanelaConsultaPedido extends JFrame implements ActionListener {
 		
 		} else if (ev.getSource() == btnAlterar) {
 			
+			JFrame jf = new JFrame();
+			jf.setBounds(100, 100, 800, 474);
 			JanelaPedido jp = new JanelaPedido(Integer.parseInt((String)table.getValueAt(table.getSelectedRow(), 0)));
-			jp.setVisible(true);
-			this.dispose();
+			jf.getContentPane().add(jp);
+			jf.setVisible(true);
+			
+			//jp.setVisible(true);
+			//this.dispose();
 			
 		}
 	}
