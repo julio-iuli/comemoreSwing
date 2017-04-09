@@ -101,7 +101,7 @@ public class PedidoDAO {
 		   		+ "idcliente = ?, idtema = ?, horaentrega = ? where id = ?";
 		   
 		   prepararSQL = this.conexao.getConexao().prepareStatement(sql);
-		   prepararSQL.setDate(1, Date.valueOf(pedido.getDataEntrega()));
+		   prepararSQL.setDate(1, java.sql.Date.valueOf(pedido.getDataEntrega().toString()));
 		   prepararSQL.setString(2, pedido.getObsPedido());
 		   prepararSQL.setString(3, pedido.getComplemento());
 		   prepararSQL.setInt(4, pedido.getLogradouro().getId());
@@ -110,8 +110,9 @@ public class PedidoDAO {
 		   prepararSQL.setTime(7, Time.valueOf(pedido.getHoraEntrega()));
 		   prepararSQL.setInt(8, pedido.getId());
 		   
-		   resultado = prepararSQL.executeQuery();
-		   resultado.next();
+		   prepararSQL.execute();
+		   prepararSQL.close();
+		   
 	   }
 	   
 	   //ACHO QUE NEM VOU USAR ISSO...

@@ -68,7 +68,6 @@ public class JanelaPedido extends JPanel implements ActionListener {
 			try {
 				PedidoDAO dao = new PedidoDAO();
 				pedidoAlterar = dao.selecionar(id);
-				JOptionPane.showMessageDialog(null, pedidoAlterar.toString());
 				EnderecoDAO daoEnd = new EnderecoDAO();
 				enderecoAlterar = daoEnd.buscarEnderecoId(pedidoAlterar.getLogradouro().getId());
 				clientePedido = pedidoAlterar.getCliente();
@@ -163,7 +162,11 @@ public class JanelaPedido extends JPanel implements ActionListener {
 		
 		if(pedidoAlterar != null) {
 			txtNometema.setText(pedidoAlterar.getTema().getNome());
+			
+			
 			txtNomecliente.setText(pedidoAlterar.getCliente().getNome());
+			
+			
 			txtUf.setText(enderecoAlterar.getUf());
 			txtCidade.setText(enderecoAlterar.getCidade());
 			txtBairro.setText(enderecoAlterar.getBairro());
@@ -172,6 +175,8 @@ public class JanelaPedido extends JPanel implements ActionListener {
 			txtComplemento.setText(pedidoAlterar.getComplemento());
 			txtHora.setText(pedidoAlterar.getHoraEntrega().toString());
 			textArea.setText(pedidoAlterar.getObsPedido());
+			
+			
 		}
 		
 		GroupLayout groupLayout = new GroupLayout(this);
@@ -342,6 +347,7 @@ public class JanelaPedido extends JPanel implements ActionListener {
 				PedidoDAO dao = new PedidoDAO();
 				Pedido pedido = new Pedido();
 				
+				if(pedidoAlterar != null)pedido.setId(pedidoAlterar.getId());
 				pedido.setCliente(clientePedido);
 				pedido.setComplemento(txtComplemento.getText());
 				pedido.setDataEntrega(LocalDate.parse(dataEntrega.getJFormattedTextField().getText()));
