@@ -1,7 +1,13 @@
 # comemoreSwing
-Diego - Gerente<br>
-Júlio - Linguagem de Programação<br>
-Luciano - Infraestrutura<br>
-Eduardo - Banco de Dados.<br>
+Sistema de Gestão para Festas Infantis, Web Mobile e Desktop
 
-Faculdade Senac 4º Semestre. 2016/2 Projeto Interdisciplinar.(Análise e Desenvolvimento de Sistemas)
+Faculdade Senac 5º Semestre. 2017 Projeto Interdisciplinar.(Análise e Desenvolvimento de Sistemas)
+
+Integrantes.
+
+Diego 
+Luciano
+Eduargo
+Júlio
+Google
+StakOverFlow
