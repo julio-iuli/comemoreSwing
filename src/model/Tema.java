@@ -1,10 +1,12 @@
 package model;
 
+import java.time.LocalDate;
+
 public class Tema{
     
     private int id;
-    private String nome, descricao, status, dataCompra, imgTema;//observar imgTema porque pode ser outra classe no futuro.
-    private char genero;
+    private String nome,descricao, status,genero,imgTema;
+	LocalDate dataCompra;
     private double preco;
     
     //Associacao
@@ -17,9 +19,9 @@ public class Tema{
     				String nome, 
     				String descricao, 
     				String status, 
-    				String dataCompra, 
+    				LocalDate dataCompra, 
     				String imgTema,
-    				char genero,
+    				String genero,
     				double preco){
         this.id = id;
         this.nome = nome;
@@ -51,16 +53,16 @@ public class Tema{
     public String getStatus(){
         return this.status;
     }
-    public void setdataCompra(String dataCompra){
+    public void setdataCompra(LocalDate dataCompra){
         this.dataCompra = dataCompra;
     }
-    public String getdataCompra(){
+    public LocalDate getdataCompra(){
         return dataCompra;
     }
-    public void setGenero(char genero){
+    public void setGenero(String genero){
         this.genero = genero;
     }
-    public char getGenero(){
+    public String getGenero(){
         return genero;
     }
     public void setPreco(double preco){
@@ -81,12 +83,7 @@ public class Tema{
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	public String getDataCompra() {
-		return dataCompra;
-	}
-	public void setDataCompra(String dataCompra) {
-		this.dataCompra = dataCompra;
-	}
+	
     
     
     
