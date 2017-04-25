@@ -3,6 +3,8 @@ package model;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Collection;
+import java.util.Vector;
 
 import javax.swing.table.DefaultTableModel;
 
@@ -50,7 +52,7 @@ public class CategoriaDAO {
 	}
 	
 	
-public DefaultTableModel listar() throws SQLException{
+	public DefaultTableModel listar() throws SQLException{
 		
 		String sql = "select nome from categoria";
 		DefaultTableModel tabela = new DefaultTableModel();
@@ -97,7 +99,25 @@ public DefaultTableModel listar() throws SQLException{
 		
 	}
 
-	
+	public Collection<Categoria> getAll() throws SQLException {
+		
+		Collection<Categoria> colecao = new Vector<>();
+		
+		String sql = "select id, nome from categoria";
+		prepararSQL = this.conexao.getConexao().prepareStatement(sql);
+		resultado = prepararSQL.executeQuery();
+		
+		while(resultado.next()){
+			
+			colecao.add(new Categoria(resultado.getInt("id"), resultado.getString("nome")));
+						
+		}
+		
+		prepararSQL.close();
+		
+		return colecao;
+		
+	}
 	
 	
 }
