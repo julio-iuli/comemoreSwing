@@ -118,9 +118,10 @@ public class AppGUIComemore extends JFrame implements ActionListener {
 		}
 		else if (e.getSource() == mniTemaNovo) {
 			contentPane.remove(centro);
-			centro = new JanelaTema();
-			contentPane.add(centro, BorderLayout.CENTER);
-			contentPane.revalidate();
+			AppTema app = new AppTema();
+			
+			//contentPane.add(centro, BorderLayout.CENTER);
+			//contentPane.revalidate();
 		}
 		else if (e.getSource() == mniClienteNovo) {
 			AppCliente viewCliente = new AppCliente();
