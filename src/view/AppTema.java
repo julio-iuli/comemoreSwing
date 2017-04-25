@@ -1,4 +1,5 @@
 package view;
+import java.awt.Component;
 //Trabalhando em 14/04/2017
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,17 +9,24 @@ import java.time.LocalDate;
 import java.util.Vector;
 
 import javax.swing.ButtonGroup;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListCellRenderer;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import org.jdatepicker.impl.JDatePickerImpl;
+
+import model.Categoria;
+import model.CategoriaDAO;
 
 //import com.mysql.fabric.xmlrpc.base.Array;
 
@@ -27,7 +35,7 @@ import model.TemaDAO;
 
 
 
-public class AppTema extends JFrame implements ActionListener{
+public class AppTema extends JPanel implements ActionListener{
 
 	private JLabel lblnomeTema,lbldescricaoTema,lblgeneroTema,lblstatusTema,lbldataCompra,lblpreco;
 	private JTextField txtnomeTema,txtpreco;
@@ -37,12 +45,12 @@ public class AppTema extends JFrame implements ActionListener{
 	private JDatePickerImpl dataCompra;
 	
 	
-	public AppTema(){
+	public AppTema() throws SQLException{
 		//Frame
-		super("Tema");
-		setSize(600,280);
-		setLocationRelativeTo(null);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		//super("Tema");
+		//setSize(600,280);
+		//setLocationRelativeTo(null);
+		//setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLayout(null);
 				
 		//Elementos da Tela
@@ -61,23 +69,23 @@ public class AppTema extends JFrame implements ActionListener{
 				
 		//status do tema
 		lblstatusTema = new JLabel("Status");
-		lblstatusTema.setBounds(40,120,40,20);
+		lblstatusTema.setBounds(12,120,66,20);
 		
 		//Combo box status
 		String[] array_status = {"","Ativo","Inativo"};
 		status = new JComboBox(array_status);
 		status.setSelectedIndex(0);
-		status.setBounds(40,140,65,20);
+		status.setBounds(12,140,65,20);
 				
 		//genero
 		lblgeneroTema = new JLabel("Gênero");
-		lblgeneroTema.setBounds(230,120,50,20);
+		lblgeneroTema.setBounds(88,120,90,20);
 		
 		//Combo box genero
 		String[] array_genero = {"","M","F","U"};
 		genero = new JComboBox(array_genero);
 		genero.setSelectedIndex(0);
-		genero.setBounds(230,140,100,20);
+		genero.setBounds(88,140,100,20);
 		
 		
 		//datapicker do julix
@@ -112,6 +120,35 @@ public class AppTema extends JFrame implements ActionListener{
 		add(lbldataCompra);add(dataCompra);add(lblpreco);add(txtpreco);
 		add(btnsalvar);add(btncancelar);add(btnimagen);add(btnlistar);
 		add(status);add(genero);
+		
+		// Tentativa com renderizador
+		
+		JLabel lblCategoria = new JLabel("Categoria");
+		lblCategoria.setBounds(226, 123, 70, 15);
+		add(lblCategoria);
+		JComboBox categoriaBox = new JComboBox();
+		categoriaBox.setBounds(216, 138, 100, 24);
+		
+		categoriaBox.setRenderer(new DefaultListCellRenderer(){
+	        @Override  
+	        public Component getListCellRendererComponent(
+	            JList list, Object value, int index,
+	            boolean isSelected, boolean cellHasFocus)
+	        {
+	            super.getListCellRendererComponent(list, value, index,
+	                isSelected, cellHasFocus);
+
+	                if(value != null){
+	                 Categoria cat = (Categoria)value;
+	                 setText( cat.getNome());
+	                }
+	            return this;
+	        }
+		});
+		CategoriaDAO dao = new CategoriaDAO();
+		categoriaBox.setModel(new DefaultComboBoxModel(new Vector<Categoria>(dao.getAll())));
+		
+		add(categoriaBox);
 		
 			
 		
@@ -149,10 +186,9 @@ public class AppTema extends JFrame implements ActionListener{
 	
 	//Instanciando a classe principal
 	
-	public static void main(String[] args){
-		AppTema objTema = new AppTema();
-		
-	}
+	//public static void main(String[] args){
+	//	AppTema objTema = new AppTema();
+	//}
 	
 	// Fazendo todas as a��es(Salvar,Cancelar,Listar,e chamar a imagem
 	@Override

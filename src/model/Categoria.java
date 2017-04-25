@@ -31,8 +31,7 @@ package model;
         
         //Printa-dor
         public String toString(){
-            return "Id da Categoria: "+this.id+
-                                    "Categoria do Tema: "+this.nome;    
+            return this.nome;    
         }
         
     }
