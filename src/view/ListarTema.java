@@ -27,6 +27,7 @@ import javax.swing.table.DefaultTableModel;
 import model.TemaDAO;
 import model.Tema;
 import view.Conexao;
+import javax.swing.ScrollPaneConstants;
 
 public class ListarTema extends JFrame implements ActionListener{
 
@@ -42,16 +43,20 @@ public class ListarTema extends JFrame implements ActionListener{
 		super("Listar Tema");
 		setSize(800,400);
 		setLocationRelativeTo(null);
-		setLayout(new FlowLayout(1,40,40));
+		getContentPane().setLayout(new FlowLayout(1,40,40));
 		setResizable(false);
 		
 				
 		//Aqui estou instanciando o result da dao nessa janela
 		
 		TemaDAO dao = new TemaDAO();
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		getContentPane().add(scrollPane);
 		tabela = new JTable(dao.listar());
-		tabela.setBounds(0,0,800,600);
-		add(tabela);
+		scrollPane.setViewportView(tabela);
+		tabela.setBounds(0,0,400,600);
 
 		
 		
@@ -59,11 +64,11 @@ public class ListarTema extends JFrame implements ActionListener{
 			
 		
 		btnExcluir = new JButton("Atualizar");
-		add(btnExcluir);
+		getContentPane().add(btnExcluir);
 		btnExcluir.addActionListener(this);
 		
 		btnExcluir = new JButton("Excluir");
-		add(btnExcluir);
+		getContentPane().add(btnExcluir);
 		btnExcluir.addActionListener(this);
 		
 		
@@ -74,10 +79,10 @@ public class ListarTema extends JFrame implements ActionListener{
 	
 	
 	//Instanciando a classe (s� assim ela aparece!!!)
-	public static void main(String[] args) throws SQLException{
-		ListarTema objListarTema = new ListarTema();
-		
-	}
+	//public static void main(String[] args) throws SQLException{
+	//	ListarTema objListarTema = new ListarTema();
+	//	
+	//}
 
 //************************************************************************//
 	
