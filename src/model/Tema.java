@@ -13,7 +13,13 @@ public class Tema{
     protected Item item;
     protected Categoria categoria;
     
-    public Tema(){
+    public Categoria getCategoria() {
+		return categoria;
+	}
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
+	public Tema(){
     }    
     public Tema (	int id, 
     				String nome, 

@@ -27,8 +27,8 @@ public class TemaDAO {
 		this.conexao = new Conexao();
 	}
 	public void inserir(Tema tema)throws SQLException{
-		String sql = "insert into tema(nome,status,descricao,genero,preco,dataCompra)"
-				+ "values(?,?,?,?,?,?)";
+		String sql = "insert into tema(nome,status,descricao,genero,preco,dataCompra, idcategoria)"
+				+ "values(?,?,?,?,?,?,?)";
 		prepararSQL = this.conexao.getConexao().prepareStatement(sql);
 		
 		prepararSQL.setString(1,tema.getNome());
@@ -37,6 +37,7 @@ public class TemaDAO {
 		prepararSQL.setString(4,tema.getGenero());
 		prepararSQL.setDouble(5,tema.getPreco());
 		prepararSQL.setDate(6,java.sql.Date.valueOf(tema.getdataCompra()));
+		prepararSQL.setInt(7, tema.getCategoria().getId());
 		prepararSQL.execute();
 		prepararSQL.close();
 			

@@ -40,7 +40,7 @@ public class AppTema extends JPanel implements ActionListener{
 	private JLabel lblnomeTema,lbldescricaoTema,lblgeneroTema,lblstatusTema,lbldataCompra,lblpreco;
 	private JTextField txtnomeTema,txtpreco;
 	private JTextArea txtdescricaoTema;
-	private JComboBox status,genero;
+	private JComboBox status,genero, categoriaBox;
 	private JButton btnsalvar,btncancelar,btnlistar,btnimagen;
 	private JDatePickerImpl dataCompra;
 	
@@ -126,7 +126,7 @@ public class AppTema extends JPanel implements ActionListener{
 		JLabel lblCategoria = new JLabel("Categoria");
 		lblCategoria.setBounds(226, 123, 70, 15);
 		add(lblCategoria);
-		JComboBox categoriaBox = new JComboBox();
+		categoriaBox = new JComboBox();
 		categoriaBox.setBounds(216, 138, 100, 24);
 		
 		categoriaBox.setRenderer(new DefaultListCellRenderer(){
@@ -149,8 +149,6 @@ public class AppTema extends JPanel implements ActionListener{
 		categoriaBox.setModel(new DefaultComboBoxModel(new Vector<Categoria>(dao.getAll())));
 		
 		add(categoriaBox);
-		
-			
 		
 		setVisible(true);
 	}
@@ -177,7 +175,8 @@ public class AppTema extends JPanel implements ActionListener{
 	//Chamar a Tela Listar
 	
 	public void listarTema() throws Exception {
-		ListarTema frame = new ListarTema(); frame.setVisible(true);
+		ListarTema frame = new ListarTema(); 
+		frame.setVisible(true);
 	}
 	
 	//************************************************//
@@ -220,6 +219,8 @@ public class AppTema extends JPanel implements ActionListener{
 			objTema.setGenero(genero.getSelectedItem().toString());
 			objTema.setPreco(Double.parseDouble(txtpreco.getText()));
 			objTema.setdataCompra(LocalDate.parse(dataCompra.getJFormattedTextField().getText()));
+			objTema.setCategoria((Categoria)categoriaBox.getSelectedItem());
+			
 			try{
 			TemaDAO dao = new TemaDAO();
 			dao.inserir(objTema);
